@@ -1,0 +1,4 @@
+问题：页码从2开始
+修改templatetags\adminlte_list.py
+问题：第一页时上页出错和末页时下页出错
+修改templates\admin\pagination.html

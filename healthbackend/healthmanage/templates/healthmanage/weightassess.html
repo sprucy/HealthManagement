@@ -1,0 +1,243 @@
+{% extends "base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "dist/css/app.css" %}">
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }}Home{% endblock %}
+
+{% block content_title %} 体重健康评估 {% endblock %}
+
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'healthmanage:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+    <li class="active">体重健康评估</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="info-box bg-red">
+        <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+        <div class="info-box-content" style="text-align:center">
+            <h2>体重健康评估</h2>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">身高体重信息</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body" >
+          <div id="bodyChart" style="width: 100%;height:200px;"></div>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-aqua">
+        <div class="inner" >
+          <h4>最近{{avgnum}}次平均体重</h4>
+          {% if bddataset %}
+          <h3>{{assessresult.1}}Kg</h3>
+          <h4>正常体重:{{normalweight.0}}Kg - {{normalweight.1}}Kg</h4>
+          {% else %}
+          <h4>信息不足无法评估</h4>
+          {% endif %}
+        </div>
+        <div class="progress" style="width: 95%;height:5px;margin:0 auto">
+          <div class="progress-bar" style="width: 0"></div>
+        </div>            
+        <div class="icon">
+          <i class="fa fa-balance-scale"></i>
+        </div>
+        <a class="small-box-footer" style="height:20px"></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h4>最近{{avgnum}}次平均体质指数(BMI)</h4>
+          {% if bddataset %}
+          <h3>{{assessresult.3}}</h3>
+          <h4>您的体质指数属于{{assessresult.4}}</h4>
+          {% else %}
+            <h4>信息不足无法评估</h4>
+          {% endif %}
+        </div>
+        <div class="progress" style="width: 95%;height:5px;margin:0 auto">
+          <div class="progress-bar" style="width: 0"></div>
+        </div>            
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+        <a class="small-box-footer" style="height:20px"></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h4>最近{{avgnum}}次平均腰围</h4>
+          {% if bddataset %}
+          <h3>{{assessresult.2}}cm</h3>
+          <h4>正常腰围:{{normalwaist.0}}cm - {{normalwaist.1}}cm</h4>
+          {% else %}
+          <h4>信息不足无法评估</h4>
+          {% endif %}
+        </div>
+        <div class="progress" style="width: 95%;height:5px;margin:0 auto">
+          <div class="progress-bar" style="width: 0"></div>
+        </div>            
+        <div class="icon">
+          <i class="fa fa-krw"></i>
+        </div>
+        <a class="small-box-footer" style="height:20px"></a>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+
+  <!-- row -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-success">
+        <div class="box-header">
+          <i class="fa fa-bar-chart-o"></i>
+          <h3 class="box-title">健康管理指导建议</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body" > 
+        {% if bddataset %}
+        <h4 style="color:#0066ff"><strong>体重健康评估：</strong></h4>                            
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您的体质指数<strong>{{assessresult.3}}</strong>，
+        身高为<strong>{{assessresult.0}}cm</strong>，体重为<strong>{{assessresult.1}}kg</strong>，属于<strong>{{assessresult.4}}</strong>，
+        相同身高的正常体重为<strong>{{normalweight.0}}Kg - {{normalweight.1}}Kg</strong>之间，腰围为<strong>{{assessresult.2}}cm</strong>，相同身高的
+        {% if sex == "M" %}男性{% else %}女性{% endif %}
+        的正常腰围：<strong>{{normalwaist.0}}cm - {{normalwaist.1}}cm</strong>。</h4>
+        <h4 style="color:#0066ff"><strong>健康风险分析：</strong></h4>  
+        {% for risk in risks %}
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ risk.0 }}</h4>  
+        {% endfor %}
+        <h4 style="color:#0066ff"><strong>健康指导建议：</strong></h4>  
+        {% for intervent in intervents %}
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ intervent.0 }}</h4>  
+        {% endfor %}
+        {% else %}
+        <h2>信息不足无法评估</h2>
+        {% endif %}        
+        </div>  
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+
+</div>
+{% endblock %}
+{% block extrajs %}
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="{% static 'plugins/jquery-knob/js/jquery.knob.js' %}"></script>
+<script>
+//bmi、体重、身高、腰围echartline图
+$(function () {
+  // 基于准备好的dom，初始化echarts实例
+  let myChart = echarts.init(document.getElementById('bodyChart'));
+// 指定图表的配置项和数据
+  let option = {
+    title: [
+        {text: '体质指数(BMI)',left:'8%',top:-4},
+        {text: '体重',left:'36%',top:-4},
+        {text: '身高',left:'61%',top:-4},
+        {text: '腰围',left:'86%',top:-4}
+      ],
+    dataset:{
+      source:{{ bddataset | safe }}
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {backgroundColor: '#6a7985'}
+        }
+    },
+    legend: {show:false},
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+          dataView: { readOnly: false },
+          restore: {},
+          saveAsImage: {}
+        }
+    },
+    grid: [
+        { show:true, top:'10%',bottom:'5%',left: ' 3%',width: '20%', height: '80%'},
+        { show:true, top:'10%',bottom:'5%',left: '28%',width: '20%', height: '80%'},
+        { show:true, top:'10%',bottom:'5%',left: '53%',width: '20%', height: '80%'},
+        { show:true, top:'10%',bottom:'5%',left: '78%',width: '20%', height: '80%'}
+    ],
+    xAxis:[ 
+        {gridIndex: 0,type: 'category'},
+        {gridIndex: 1,type: 'category'},
+        {gridIndex: 2,type: 'category'},
+        {gridIndex: 3,type: 'category'}
+    ],
+    yAxis:[
+        {gridIndex: 0,type: 'value',min:function (value) {return Math.round(value.min) - 2;},max:function (value) {return Math.round(value.max) + 2;}},
+        {gridIndex: 1,type: 'value',min:function (value) {return Math.round(value.min) - 5;},max:function (value) {return Math.round(value.max) + 5;}},
+        {gridIndex: 2,type: 'value',min:function (value) {return Math.round(value.min) - 5;},max:function (value) {return Math.round(value.max) + 5;}},
+        {gridIndex: 3,type: 'value',min:function (value) {return Math.round(value.min) - 2;},max:function (value) {return Math.round(value.max) + 2;}},
+    ],
+    series: [
+        {name:'BMI',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 0,yAxisIndex: 0, encode: {x: 0,y: 4,}},
+        {name:'体重',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 1,yAxisIndex: 1, encode: {x: 0,y: 2,}},
+        {name:'身高',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 2,yAxisIndex: 2, encode: {x: 0,y: 1,}},
+        {name:'腰围',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 3,yAxisIndex: 3, encode: {x: 0,y: 3,}}
+    ]
+  };
+
+  // 使用指定的配置项和数据显示图表。
+  myChart.setOption(option);
+  window.addEventListener('resize', () => {
+    myChart.resize()
+  })
+});
+</script>
+
+{% endblock %}

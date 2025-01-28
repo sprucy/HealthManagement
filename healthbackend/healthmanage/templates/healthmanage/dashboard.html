@@ -1,0 +1,347 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "dist/css/app.css" %}">
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }}dashboard{% endblock %}
+
+{% block content_title %} {% trans 'dashboard' %} {% endblock %}
+
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'admin:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+    <li class="active">{% trans 'dashboard' %}</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+
+  <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- row -->
+            <div class="col-md-12">
+              <div class="box box-solid">
+                <div class="box-header">
+                  <i class="fa fa-bar-chart-o"></i>
+
+                  <h3 class="box-title">健康管理建议</h3>
+
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" >
+                  
+                  <div id="smokediabetesChart" style="width: 100%;height:200px;">年龄：{{age}}岁</div>
+                  
+                <!-- /.box-body -->
+                </div>
+              <!-- /.box -->
+            </div>
+            <!-- /.col (RIGHT) -->
+            </div>
+          <!-- /.row -->
+
+        <div class="col-md-12">
+            <!-- BAR CHART -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">体重指数分析：</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body" >
+              <div id="bodyChart" style="width: 100%;height:200px;">腰围</div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">血压(mmHg)：</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+                {# 百度Echarts实现饼状图#}
+              <div id="BloodPressureChart" style="width: 100%;height:300px;"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col (RIGHT) -->
+
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">血脂(mmol/L)：</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <div id="BcholesterinChart" style="width: 100%;height:300px;"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col (RIGHT) -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+</div>
+{% endblock %}
+{% block extrajs %}
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="{% static 'plugins/jquery-knob/js/jquery.knob.js' %}"></script>
+<script>
+
+ // 顶部百分率圆图
+$(function () {
+  let dom = document.getElementById('smokediabetesChart');
+  let myChart = echarts.init(dom);
+  let option = {
+          tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+          },
+          toolbox: {
+            feature: {
+              restore: {},
+              saveAsImage: {}
+            }
+          },
+          grid: [
+            { width: '50%', height: '100%'},
+            { width: '50%', height: '100%',left: '50%', }],
+          series: [{
+            name: '吸烟时长:'+{{smokeyear}},
+            type: 'gauge',
+            radius: '100%',
+            center: ['25%', '50%'],
+            axisLine: {
+              lineStyle: { width: 20,}     // 属性lineStyle控制线条样式
+            },
+            detail: {formatter: '{value}%'},
+            data: [{value: {% widthratio smokeyear age 100 %}, name: '吸烟'}]
+          },{
+            name: '糖尿病时长:'+{{diabetesyear}},
+            type: 'gauge',
+            center: ['75%', '50%'],
+            radius: '100%',
+            axisLine: {            // 坐标轴线
+              lineStyle: { width: 20 }     // 属性lineStyle控制线条样式
+            },
+            detail: {formatter: '{value}%'},
+            data: [{value: {% widthratio diabetesyear age 100 %}, name: '糖尿病'}]
+          }]
+  };
+  myChart.setOption(option, true);
+  window.addEventListener('resize', () => {
+    console.log('resize')
+    myChart.resize()
+  })
+});
+
+
+//身高体重
+$(function () {
+  // 基于准备好的dom，初始化echarts实例
+    let myChart = echarts.init(document.getElementById('bodyChart'));
+
+    // 指定图表的配置项和数据
+    let option = {
+      title: [
+        {text: 'BMI',left:'11%',top:-4},
+        {text: '体重',left:'36%',top:-4},
+        {text: '身高',left:'61%',top:-4},
+        {text: '腰围',left:'86%',top:-4}
+      ],
+      tooltip: {trigger: 'axis'},
+      legend: {show:false},
+      grid: [
+            { show:true, top:'10%',bottom:'5%',left: ' 3%',width: '20%', height: '80%'},
+            { show:true, top:'10%',bottom:'5%',left: '28%',width: '20%', height: '80%'},
+            { show:true, top:'10%',bottom:'5%',left: '53%',width: '20%', height: '80%'},
+            { show:true, top:'10%',bottom:'5%',left: '78%',width: '20%', height: '80%'}
+      ],
+      xAxis:[ 
+            {gridIndex: 0,type: 'category',data: [{% for value in measuretime %}'{{ value }}',{% endfor %}]},
+            {gridIndex: 1,type: 'category',data: [{% for value in measuretime %}'{{ value }}',{% endfor %}]},
+            {gridIndex: 2,type: 'category',data: [{% for value in measuretime %}'{{ value }}',{% endfor %}]},
+            {gridIndex: 3,type: 'category',data: [{% for value in measuretime %}'{{ value }}',{% endfor %}]}
+      ],
+      yAxis:[
+            {gridIndex: 0,type: 'value',min:function (value) {return Math.round(value.min) - 2;},max:function (value) {return Math.round(value.max) + 2;}},
+            {gridIndex: 1,type: 'value',min:function (value) {return Math.round(value.min) - 5;},max:function (value) {return Math.round(value.max) + 5;}},
+            {gridIndex: 2,type: 'value',min:function (value) {return Math.round(value.min) - 5;},max:function (value) {return Math.round(value.max) + 5;}},
+            {gridIndex: 3,type: 'value',min:function (value) {return Math.round(value.min) - 2;},max:function (value) {return Math.round(value.max) + 2;}},
+      ],
+      series: [{
+            name:  'BMI',
+            type: 'line',
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            data: [{% for value in bmi %}{{ value }},{% endfor %}]        
+      },
+      {
+            name:  '体重',
+            type: 'line',
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            data: [{% for value in weight %}{{ value }},{% endfor %}]        
+      },{
+            name:  '身高',
+            type: 'line',
+            xAxisIndex: 2,
+            yAxisIndex: 2,
+            data: [{% for value in height %}{{ value }},{% endfor %}]        
+      },{
+            name:  '腰围',
+            type: 'line',
+            xAxisIndex: 3,
+            yAxisIndex: 3,
+            data: [{% for value in waist %}{{ value }},{% endfor %}]        
+      }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    window.addEventListener('resize', () => {
+      console.log('resize')
+      myChart.resize()
+    })
+});
+
+
+//血压
+$(function () {
+  // 基于准备好的dom，初始化echarts实例
+  let myChart = echarts.init(document.getElementById('BloodPressureChart'));
+// 指定图表的配置项和数据
+  let option = {
+    title: {
+        text: '血压',
+        show:false
+    },
+    dataset:{
+      source:{% autoescape off %}{{ bpdataset }}{% endautoescape %}
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {},
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {type: 'category'},
+    yAxis: {},
+    series: [
+        {type: 'line', seriesLayoutBy: 'row',areaStyle: {color: '#e0ffff',opacity:1.0}},
+        {type: 'line', seriesLayoutBy: 'row',areaStyle: {color: 'white',opacity:1.0},},
+        {type: 'line', seriesLayoutBy: 'row'}
+    ]
+  };
+
+  // 使用指定的配置项和数据显示图表。
+  myChart.setOption(option);
+  window.addEventListener('resize', () => {
+    myChart.resize()
+  })
+});
+
+//血脂
+$(function () {
+  // 初始化echarts实例
+  let myChart = echarts.init(document.getElementById('BcholesterinChart'));
+
+// 设置图表的配置项和数据
+  let option = {
+    title: {
+        text: '血脂',
+        show:false
+    },
+    dataset:{
+      source:{% autoescape off %}{{ bsdataset }}{% endautoescape %}
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {},
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {type: 'category'},
+    yAxis: {},
+    series: [
+        {type: 'line', seriesLayoutBy: 'row',areaStyle: {}},
+        {type: 'line', seriesLayoutBy: 'row',areaStyle: {}},
+        {type: 'line', seriesLayoutBy: 'row',areaStyle: {}},
+        {type: 'line', seriesLayoutBy: 'row',areaStyle: {}}
+    ]
+  };
+
+  // 使用指定的配置项和数据显示图表。
+  myChart.setOption(option);
+  window.addEventListener('resize', () => {
+    myChart.resize()
+  })
+});
+
+</script>
+
+{% endblock %}

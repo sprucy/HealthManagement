@@ -1,0 +1,246 @@
+{% extends "base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "dist/css/app.css" %}">
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }}Home{% endblock %}
+
+{% block content_title %} 日常健康评估 {% endblock %}
+
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'healthmanage:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+    <li class="active">日常健康评估</li>
+</ol>
+{% endblock %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="info-box bg-red">
+        <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+        <div class="info-box-content" style="text-align:center">
+          {% if risks %}
+            <h2>日常健康评估</h2>
+          {% else %}
+            <h2>信息不足无法评估</h2>
+          {% endif %}
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">日常健康信息</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="box-body" >
+          <div id="smokediabetesChart" style="width: 100%;height:200px;"></div>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-aqua">
+        <div class="inner" >
+          {% if smokeyear is None %}   
+            <h4>信息不足</h4>
+            <h4>无法评估</h4>
+          {% elif smokeyear == 0 %}   
+            <h4>您无吸烟的习惯</h4>
+            <h4>❤❤❤❤❤</h4>
+          {% else %}
+            <h4>您有吸烟的习惯</h4>
+            <h4>☢吸烟史：{{smokeyear}}年</h4>
+          {% endif %}
+        </div>
+        <div class="progress" style="width: 95%;height:5px;margin:0 auto">
+          <div class="progress-bar" style="width: 0"></div>
+        </div>            
+        <div class="icon">
+          <i class="fa  fa-bomb"></i>
+        </div>
+        <a class="small-box-footer" style="height:20px"></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-yellow">
+        <div class="inner">
+        {% if diabetesyear is None %}   
+            <h4>信息不足</h4>
+            <h4>无法评估</h4>
+          {% elif diabetesyear == 0 %}   
+            <h4>您无糖尿病史</h4>
+            <h4>❤❤❤❤</h4>
+          {% else %}
+            <h4>您患有糖尿病</h4>
+            <h4>☢糖尿病史：{{diabetesyear}}年</h4>
+          {% endif %}
+        </div>
+        <div class="progress" style="width: 95%;height:5px;margin:0 auto">
+          <div class="progress-bar" style="width: 0"></div>
+        </div>            
+        <div class="icon">
+          <i class="fa fa-user-plus"></i>
+        </div>
+        <a class="small-box-footer" style="height:20px"></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-green">
+        <div class="inner">
+          {% if drinkyear is None %}   
+            <h4>信息不足</h4>
+            <h4>无法评估</h4>
+          {% elif drinkyear == 0 %}   
+            <h4>您无饮酒的习惯</h4>
+            <h4>❤❤❤❤❤</h4>
+          {% else %}
+            <h4>您有饮酒的习惯</h4>
+            <h4>☢饮酒史:{{drinkyear}}年</h4>
+          {% endif %}
+        </div>
+        <div class="progress" style="width: 95%;height:5px;margin:0 auto">
+          <div class="progress-bar" style="width: 0"></div>
+        </div>            
+        <div class="icon">
+          <i class="fa fa-beer"></i>
+        </div>
+        <a class="small-box-footer" style="height:20px"></a>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+
+  <!-- row -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-success">
+        <div class="box-header">
+          <i class="fa fa-bar-chart-o"></i>
+          <h3 class="box-title">健康管理指导建议</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-default btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body" > 
+        {% if smokeyear is None and drinkyear is None and diabetesyear is None%} 
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信息不足,无法评估!</h4> 
+        {% else %}              
+        <h4 style="color:#0066ff"><strong>日常健康评估：</strong></h4>
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {% if smokeyear == 0 %}您日常无吸烟的习惯；{% else %}您有吸烟的习惯，已有{{smokeyear}}年的吸烟史；{% endif %}
+          {% if drinkyear == 0 %}您日常无饮酒的习惯；{% else %}您有饮酒的习惯，已有{{drinkyear}}年的饮酒史；{% endif %}
+          {% if diabetesyear == 0 %}您无糖尿病史；{% else %}您患有糖尿病，已有{{diabetesyear}}年的糖尿病史；{% endif %}</h4>
+        <h4 style="color:#0066ff"><strong>健康风险分析：</strong></h4>  
+        {% for risk in risks %}
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ risk.0 }}</h4>  
+        {% endfor %}
+        <h4 style="color:#0066ff"><strong>健康指导建议：</strong></h4>  
+        {% for intervent in intervents %}
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ intervent.0 }}</h4>  
+        {% endfor %}
+        {% endif %}
+      </div>  
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+<!-- /.content -->
+
+</div>
+{% endblock %}
+{% block extrajs %}
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="{% static 'plugins/jquery-knob/js/jquery.knob.js' %}"></script>
+<script>
+ // 顶部百分率圆图
+$(function () {
+  let dom = document.getElementById('smokediabetesChart');
+  let myChart = echarts.init(dom);
+  let option = {
+          tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+          },
+          toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+              saveAsImage: {}
+            }
+          },
+          grid: [
+            { width: '33%', height: '100%'},
+            { width: '33%', height: '100%',left: '33%', },
+            { width: '33%', height: '100%',left: '66%', }],
+          series: [
+            {
+              name: '吸烟时长:'+{{smokeyear}}+'年',
+              data: [{name: '吸烟',value: {% widthratio smokeyear age 100 %}}],
+              type: 'gauge',
+              radius: '100%',
+              center: ['18%', '50%'],
+              axisLine: {lineStyle: { width: 20}},    // 属性lineStyle控制线条样式
+              detail: {formatter: {{smokeyear}}+'年'}
+            },          
+            {
+              name: '糖尿病时长:'+{{diabetesyear}}+'年',
+              data: [{name: '糖尿病',value: {% widthratio diabetesyear age 100 %} }],
+              type: 'gauge',
+              center: ['50%', '50%'],
+              radius: '100%',
+              axisLine: {lineStyle: { width: 20}},    // 属性lineStyle控制线条样式
+              detail: {formatter:{{diabetesyear}}+'年'}
+            },
+            {
+              name: '饮酒时长:'+{{drinkyear}}+'年',
+              data: [{name: '饮酒',value: {% widthratio drinkyear age 100 %} }],
+              type: 'gauge',
+              radius: '100%',
+              center: ['82%', '50%'],
+              axisLine: {lineStyle: { width: 20}},    // 属性lineStyle控制线条样式
+              detail: {formatter: {{drinkyear}}+'年'}
+            },  
+          ]
+  };
+  myChart.setOption(option, true);
+  window.addEventListener('resize', () => {
+    console.log('resize')
+    myChart.resize()
+  })
+});
+</script>
+
+{% endblock %}
