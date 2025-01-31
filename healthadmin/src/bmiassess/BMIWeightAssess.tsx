@@ -44,98 +44,85 @@ const BMIWeightAssess = () => {
         }
         return [];
     };
-    if (bmiweight.username==='admin'){
-        return(
-            <div>
+    
+    return (
+        <div>
+            <div style={styles.flexColumn as CSSProperties}>
                 <div style={styles.singleCol}>
                     <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                        <Typography variant="h5" >{translate('health.systemuserwarning')}</Typography>
+                        <Typography variant="h5" >{translate('resources.bmiassess.name')}</Typography>
                     </Box>
-
                 </div>
-        </div>            
-        )
-    }
-    else{    
-        return (
-            <div>
-                <div style={styles.flexColumn as CSSProperties}>
-                    <div style={styles.singleCol}>
-                        <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                            <Typography variant="h5" >{translate('resources.bmiassess.name')}</Typography>
-                        </Box>
-                    </div>
-                    <div style={styles.flex}>
-                        <HealthLineChart 
-                            title = {translate('health.bmiassess.heightchart')} 
-                            height = '300'
-                            xdata={getDataset(0)}
-                            ydata={getDataset(1)}
-                        />   
-                        <Spacer />
-                        <HealthLineChart 
-                            title = {translate('health.bmiassess.weightchart')}  
-                            height = '300'
-                            xdata={getDataset(0)}
-                            ydata={getDataset(2)}
-                        />
-                        <Spacer />
-                        <HealthLineChart
-                            title = {translate('health.bmiassess.waistchart')}  
-                            height = '300'
+                <div style={styles.flex}>
+                    <HealthLineChart 
+                        title = {translate('health.bmiassess.heightchart')} 
+                        height = '300'
+                        xdata={getDataset(0)}
+                        ydata={getDataset(1)}
+                    />   
+                    <Spacer />
+                    <HealthLineChart 
+                        title = {translate('health.bmiassess.weightchart')}  
+                        height = '300'
+                        xdata={getDataset(0)}
+                        ydata={getDataset(2)}
+                    />
+                    <Spacer />
+                    <HealthLineChart
+                        title = {translate('health.bmiassess.waistchart')}  
+                        height = '300'
 
-                            xdata={getDataset(0)}
-                            ydata={getDataset(3)}
-                        />
-                        <Spacer />
-                        <HealthLineChart 
-                            title = {translate('health.bmiassess.bmichart')}   
-                            height = '300'
-                            xdata={getDataset(0)}
-                            ydata={getDataset(4)}
-                        />
-                    </div>
+                        xdata={getDataset(0)}
+                        ydata={getDataset(3)}
+                    />
+                    <Spacer />
+                    <HealthLineChart 
+                        title = {translate('health.bmiassess.bmichart')}   
+                        height = '300'
+                        xdata={getDataset(0)}
+                        ydata={getDataset(4)}
+                    />
+                </div>
 
-                    <div style={styles.flex}>
-                        <CardWithIcon
-                            to="/bodyinfos"
-                            icon={DollarIcon}
-                            title={translate('health.bmiassess.weekweight')}
-                            subtitle={`${bmiweight.assessresult[1]}Kg`}>
-                        </CardWithIcon>
-                        <Spacer />
-                        <CardWithIcon
-                            to="/bodyinfos"
-                            icon={DollarIcon}
-                            title={translate('health.bmiassess.weekbmi')}
-                            subtitle={`${bmiweight.assessresult[3]}`} >
+                <div style={styles.flex}>
+                    <CardWithIcon
+                        to="/bodyinfos"
+                        icon={DollarIcon}
+                        title={translate('health.bmiassess.weekweight')}
+                        subtitle={`${bmiweight.assessresult[1]}Kg`}>
+                    </CardWithIcon>
+                    <Spacer />
+                    <CardWithIcon
+                        to="/bodyinfos"
+                        icon={DollarIcon}
+                        title={translate('health.bmiassess.weekbmi')}
+                        subtitle={`${bmiweight.assessresult[3]}`} >
 
-                        </CardWithIcon>
-                        <Spacer />
-                        <CardWithIcon
-                            to="/bodyinfos"
-                            icon={DollarIcon}
-                            title={translate('health.bmiassess.weekwaist')}
-                            subtitle={`${bmiweight.assessresult[2]}`} >
-                        </CardWithIcon>
-                    
-                    </div>
-                    <VerticalSpacer />
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bmiassess.fields.assess')} content={bmiweight.assess} />
-                    </div>
+                    </CardWithIcon>
+                    <Spacer />
+                    <CardWithIcon
+                        to="/bodyinfos"
+                        icon={DollarIcon}
+                        title={translate('health.bmiassess.weekwaist')}
+                        subtitle={`${bmiweight.assessresult[2]}`} >
+                    </CardWithIcon>
+                
+                </div>
+                <VerticalSpacer />
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bmiassess.fields.assess')} content={bmiweight.assess} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bmiassess.fields.risks')} content={bmiweight.risks} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bmiassess.fields.risks')} content={bmiweight.risks} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bmiassess.fields.intervents')} content={bmiweight.intervents} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bmiassess.fields.intervents')} content={bmiweight.intervents} />
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
 };
 
 export default BMIWeightAssess;

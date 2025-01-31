@@ -42,79 +42,66 @@ const BPAssess = () => {
     }
 
     if (!bloodpressureassess || bloodpressureassess.length === 0) {
-        return <p>No bmi weight assess data available.</p>;
+        return <p>No bmi bloodpressure assess data available.</p>;
     }
     
     
-    if (bpassess.username==='admin'){
-        return(
-            <div>
+    return (
+        <div>
+            <div style={styles.flexColumn as CSSProperties}>
                 <div style={styles.singleCol}>
                     <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                        <Typography variant="h5" >{translate('health.systemuserwarning')}</Typography>
+                        <Typography variant="h5" >{translate('resources.bloodpressureassess.name')}</Typography>
                     </Box>
-
                 </div>
-        </div>            
-        )
-    }
-    else{
-        return (
-            <div>
-                <div style={styles.flexColumn as CSSProperties}>
-                    <div style={styles.singleCol}>
-                        <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                            <Typography variant="h5" >{translate('resources.bloodpressureassess.name')}</Typography>
-                        </Box>
-                    </div>
-                    <div style={styles.flex}>
-                        <HealthAreaChart 
-                            title = {translate('health.bloodpressureassess.charttitle')}
-                            height = '300'
-                            dataset={datalist}
-                        />   
-                    </div>
+                <div style={styles.flex}>
+                    <HealthAreaChart 
+                        title = {translate('health.bloodpressureassess.charttitle')}
+                        height = '300'
+                        dataset={datalist}
+                    />   
+                </div>
 
-                    <div style={styles.flex}>
-                        <CardWithIcon
-                            to="/bloodpressures"
-                            icon={DollarIcon}
-                            title={translate('health.bloodpressureassess.avgdbp')}
-                            subtitle={`${bpassess.assessresult[0]}mmol/L`}>
-                        </CardWithIcon>
-                        <Spacer />
-                        <CardWithIcon
-                            to="/bloodpressures"
-                            icon={DollarIcon}
-                            title={translate('health.bloodpressureassess.avgsbp')}
-                            subtitle={`${bpassess.assessresult[1]}mmol/L`} >
+                <div style={styles.flex}>
+                    <CardWithIcon
+                        to="/bloodpressures"
+                        icon={DollarIcon}
+                        title={translate('health.bloodpressureassess.avgdbp')}
+                        subtitle={`${bpassess.assessresult[0]}mmol/L`}>
+                    </CardWithIcon>
+                    <Spacer />
+                    <CardWithIcon
+                        to="/bloodpressures"
+                        icon={DollarIcon}
+                        title={translate('health.bloodpressureassess.avgsbp')}
+                        subtitle={`${bpassess.assessresult[1]}mmol/L`} >
 
-                        </CardWithIcon>
-                        <Spacer />
-                        <CardWithIcon
-                            to="/bloodpressures"
-                            icon={DollarIcon}
-                            title={translate('health.bloodpressureassess.avghr')}
-                            subtitle={`${bpassess.assessresult[2]}/min`} >
-                        </CardWithIcon>
-                    
-                    </div>
-                    <VerticalSpacer />
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bloodpressureassess.fields.assess')} content={bpassess.assess} />
-                    </div>
+                    </CardWithIcon>
+                    <Spacer />
+                    <CardWithIcon
+                        to="/bloodpressures"
+                        icon={DollarIcon}
+                        title={translate('health.bloodpressureassess.avghr')}
+                        subtitle={`${bpassess.assessresult[2]}/min`} >
+                    </CardWithIcon>
+                
+                </div>
+                <VerticalSpacer />
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bloodpressureassess.fields.assess')} content={bpassess.assess} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bloodpressureassess.fields.risks')} content={bpassess.risks} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bloodpressureassess.fields.risks')} content={bpassess.risks} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bloodpressureassess.fields.intervents')} content={bpassess.intervents} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bloodpressureassess.fields.intervents')} content={bpassess.intervents} />
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
+
 };
 
 export default BPAssess;

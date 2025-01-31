@@ -9,12 +9,12 @@
 
 {% block bodyclass %}{{ block.super }}Home{% endblock %}
 
-{% block content_title %} 血压健康评估 {% endblock %}
+{% block content_title %} {% trans 'Blood pressure health assessment' %} {% endblock %}
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
     <li><a href="{% url 'healthmanage:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
-    <li class="active">血压健康评估</li>
+    <li class="active">{% trans 'Blood pressure health assessment' %}</li>
 </ol>
 {% endblock %}
 
@@ -27,7 +27,7 @@
       <div class="info-box bg-red">
         <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
         <div class="info-box-content" style="text-align:center">
-            <h2>血压健康评估</h2>
+            <h2>{% trans 'Blood pressure health assessment' %}</h2>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -39,7 +39,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="box box-success">
         <div class="box-header with-border">
-          <h3 class="box-title">血压信息</h3>
+          <h3 class="box-title">{% trans 'Blood pressure information' %}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -57,13 +57,13 @@
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner" >
-          <h4>最近{{avgnum}}次平均收缩压(mmol/L)</h4>
+          <h4>{% trans 'Mean DBP' %}(mmol/L)</h4>
           {% if assessresult is None %}   
-            <h4>信息不足</h4>
-            <h4>无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% else %}
            <h3>{{assessresult.0}}</h3>
-            <h4>正常收缩压:{{normaldbp.0}} - {{normaldbp.1}}mmol/L</h4>
+            <h4>{% trans 'Normal DBP' %}:{{normaldbp.0}} - {{normaldbp.1}}mmol/L</h4>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -80,13 +80,13 @@
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h4>最近{{avgnum}}次平均舒张压(mmol/L)</h4>
+          <h4>{% trans 'Mean SBP' %}(mmol/L)</h4>
           {% if assessresult is None %}   
-            <h4>信息不足</h4>
-            <h4>无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% else %}
             <h3>{{assessresult.1}}</h3>
-            <h4>正常舒张压:{{normalsbp.0}} - {{normalsbp.1}}mmol/L</h4>
+            <h4>{% trans 'Normal SBP' %}:{{normalsbp.0}} - {{normalsbp.1}}mmol/L</h4>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -103,13 +103,13 @@
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h4>最近{{avgnum}}次平均心率(次/分)</h4>
+          <h4>{% trans 'Mean BPM' %}</h4>
           {% if assessresult is None %}   
-            <h4>信息不足</h4>
-            <h4>无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% else %}
             <h3>{{assessresult.2}}</h3>
-            <h4>正常心率:{{normalhr.0}} - {{normalhr.1}}次/分</h4>
+            <h4>{% trans 'Normal BPM' %}:{{normalhr.0}} - {{normalhr.1}}次/分</h4>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -130,7 +130,7 @@
       <div class="box box-success">
         <div class="box-header">
           <i class="fa fa-bar-chart-o"></i>
-          <h3 class="box-title">健康管理指导建议</h3>
+          <h3 class="box-title">{% trans 'Health management guidance and suggestions' %}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -141,19 +141,16 @@
         <!-- /.box-header -->
         <div class="box-body" > 
         {% if assessresult is None%} 
-          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信息不足,无法评估!</h4> 
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'Insufficient information' %},{% trans 'Unable to evaluate' %}</h4> 
         {% else %}              
-          <h4 style="color:#0066ff"><strong>血压健康评估：</strong></h4>
-          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          您的近{{avgnum}}次平均收缩压为<strong>{{assessresult.0}}mmol/L</strong>，正常收缩压范围为{{normaldbp.0}} - {{normaldbp.1}}mmol/L，您的{{bpresult.0}}；
-          您的近{{avgnum}}次平均舒张压为<strong>{{assessresult.1}}mmol/L</strong>，正常舒张压范围为{{normalsbp.0}} - {{normalsbp.1}}mmol/L，您的{{bpresult.1}}；
-          {% if val %}此血压值如果在安静状态测量，且测量方法正确，根据世界卫生组织规定你可确诊为<strong>{{val}}</strong>;{% endif %} 
-          您的近{{avgnum}}次平均心率为<strong>{{assessresult.2}}次/分钟</strong>，正常心率范围为{{normalhr.0}} - {{normalhr.1}}次/分钟，您{{bpresult.2}}；</h4>
-         <h4 style="color:#0066ff"><strong>健康风险分析：</strong></h4>  
+          <h4 style="color:#0066ff"><strong>{% trans 'Blood pressure health assessment' %}：</strong></h4>
+
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{assess.0}}</h4>
+          <h4 style="color:#0066ff"><strong>{% trans 'Health Risk Analysis' %}：</strong></h4>  
           {% for risk in risks %}
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ risk.0 }}</h4>  
           {% endfor %}
-          <h4 style="color:#0066ff"><strong>健康指导建议：</strong></h4>  
+          <h4 style="color:#0066ff"><strong>{% trans 'Health guidance' %}：</strong></h4>  
           {% for intervent in intervents %}
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ intervent.0 }}</h4>  
           {% endfor %}
@@ -182,7 +179,7 @@ $(function () {
 // 指定图表的配置项和数据
   let option = {
     title: {
-        text: '血压',
+        text: 'BloodPressure',
         show:false
     },
     dataset:{
@@ -247,7 +244,7 @@ $(function () {
     xAxis: {type: 'category',boundaryGap: false,},
     yAxis: {},
     series: [
-        { name:'收缩压',
+        { name:'SBP',
           type: 'line', 
           seriesLayoutBy: 'row',
           areaStyle: {
@@ -258,8 +255,8 @@ $(function () {
                 }])
           },
         },
-        {name:'舒张压',type: 'line', seriesLayoutBy: 'row',areaStyle: {color: '#FFFFFF',opacity:0.6},},
-        {name:'心率',type: 'line', seriesLayoutBy: 'row'}
+        {name:'DBP',type: 'line', seriesLayoutBy: 'row',areaStyle: {color: '#FFFFFF',opacity:0.6},},
+        {name:'BPM',type: 'line', seriesLayoutBy: 'row'}
     ]
   };
 

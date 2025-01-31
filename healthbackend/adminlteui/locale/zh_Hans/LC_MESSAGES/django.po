@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-04 11:57+0800\n"
+"POT-Creation-Date: 2025-01-30 11:05+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,26 +143,27 @@ msgstr "普通用户"
 msgid "Register time"
 msgstr "注册时间"
 
-#: .\adminlteui\templates\admin\base.html:164
+#: .\adminlteui\templates\admin\base.html:166
+#: .\adminlteui\templates\admin\base.html:168
 #: .\adminlteui\templates\registration\password_change_done.html:3
 #: .\adminlteui\templates\registration\password_change_form.html:7
 msgid "Log out"
 msgstr ""
 
-#: .\adminlteui\templates\admin\base.html:195
+#: .\adminlteui\templates\admin\base.html:199
 msgid "Online"
 msgstr "在线"
 
-#: .\adminlteui\templates\admin\base.html:203
+#: .\adminlteui\templates\admin\base.html:207
 #: .\adminlteui\templates\admin\search_form.html:20
 msgid "Search"
 msgstr "搜索"
 
-#: .\adminlteui\templates\admin\base.html:215
+#: .\adminlteui\templates\admin\base.html:219
 msgid "MAIN NAVIGATION"
 msgstr "页面导航"
 
-#: .\adminlteui\templates\admin\base.html:218
+#: .\adminlteui\templates\admin\base.html:222
 msgid "Dashboard"
 msgstr "仪表盘"
 
@@ -399,7 +400,7 @@ msgstr "保存"
 msgid "Previous"
 msgstr "上一页"
 
-#: .\adminlteui\templates\admin\pagination.html:38
+#: .\adminlteui\templates\admin\pagination.html:39
 msgid "Next"
 msgstr "下一页"
 
@@ -435,39 +436,39 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:24
+#: .\adminlteui\templates\adminlte\date_range_filter.html:29
 msgid "Apply"
 msgstr "确定"
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:25
+#: .\adminlteui\templates\adminlte\date_range_filter.html:30
 msgid "Cancel"
 msgstr "取消"
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:26
+#: .\adminlteui\templates\adminlte\date_range_filter.html:31
 msgid "Custom Range"
 msgstr "自定义范围"
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:29
+#: .\adminlteui\templates\adminlte\date_range_filter.html:34
 msgid "Today"
 msgstr "今天"
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:30
+#: .\adminlteui\templates\adminlte\date_range_filter.html:35
 msgid "Yesterday"
 msgstr "昨天"
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:31
+#: .\adminlteui\templates\adminlte\date_range_filter.html:36
 msgid "Last 7 Days"
 msgstr "近7天"
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:32
+#: .\adminlteui\templates\adminlte\date_range_filter.html:37
 msgid "Last 30 Days"
 msgstr "近30天"
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:33
+#: .\adminlteui\templates\adminlte\date_range_filter.html:38
 msgid "This Month"
 msgstr "本月"
 
-#: .\adminlteui\templates\adminlte\date_range_filter.html:34
+#: .\adminlteui\templates\adminlte\date_range_filter.html:39
 msgid "Last Month"
 msgstr "上月"
 

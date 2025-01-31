@@ -1,6 +1,9 @@
 from django.contrib.auth.models import User
 from django.db.models import Avg,Q,Count,Min,Max
 from django.db.models.functions import TruncYear,TruncMonth,TruncDay
+from django.conf import settings
+from django.utils.translation import gettext as _
+
 import datetime
 import time
 import numpy as np
@@ -420,7 +423,11 @@ class UserData(object):
         avg=self.getbodyinfoavg(3)
         if avg:
             result=healthrisk.bmiassess(avg[3])
-            if (result in ['体重偏胖','I度肥胖','II度肥胖','III度肥胖']):
+            if settings.LANGUAGE_CODE == 'en':
+                obesitylist=['Over weight','Grade I obesity','Grade II obesity','BMI evaluation','Grade III obesity']
+            else:
+                obesitylist=['体重偏胖','I度肥胖','II度肥胖','BMI评估','III度肥胖']
+            if (result in obesitylist):
                 return True
             else:
                 return False
@@ -458,7 +465,12 @@ class HealthRiskAssess(object):
         bmiscale = np.array(BMIScale.objects.all().values_list('bmi', 'wtype'))
         self.bmiscale=bmiscale[np.lexsort(bmiscale.T)].transpose()
         self.weighttypes={}
-        indicator= Indicator.objects.filter(name='BMI评价').first()    
+        #获取bmi的评估类型
+        if settings.LANGUAGE_CODE == 'en':
+            indicator= Indicator.objects.filter(name='BMI evaluation').first()
+        else:
+            indicator= Indicator.objects.filter(name='BMI评价').first()
+  
         for ind in Indicator.objects.filter(parent=indicator).values_list('id','name'):
             self.weighttypes[ind[0]]= ind[1]        
         #初始化单项评估标准
@@ -549,7 +561,11 @@ class HealthRiskAssess(object):
     # 返回结果：收缩压正常范围列表[最大值,最小值]，如无评估标准数据返回None
     def getdbp(self):
         for assessname in self.singlescale:
-            if assessname[1] == '收缩压':
+            if settings.LANGUAGE_CODE == 'en':
+                indicatorname ='Systolic blood pressure'
+            else:
+                indicatorname ='收缩压'
+            if assessname[1] == indicatorname:
                 return [int(float(assessname[2])),int(float(assessname[3]))]
         return None
 
@@ -557,14 +573,22 @@ class HealthRiskAssess(object):
     # 返回结果：舒张压正常范围列表[最大值,最小值]，如无评估标准数据返回None
     def getsbp(self):
         for assessname in self.singlescale:
-            if assessname[1] == '舒张压':
+            if settings.LANGUAGE_CODE == 'en':
+                indicatorname ='Diastolic blood pressure'
+            else:
+                indicatorname ='舒张压'
+            if assessname[1] == indicatorname:
                 return [int(float(assessname[2])),int(float(assessname[3]))]
         return None
     # 获取心率正常范围
     # 返回结果：心率正常范围列表[最大值,最小值]，如无评估标准数据返回None
     def gethr(self):
         for assessname in self.singlescale:
-            if assessname[1] == '心率':
+            if settings.LANGUAGE_CODE == 'en':
+                indicatorname ='Heart rate'
+            else:
+                indicatorname ='心率'
+            if assessname[1] == indicatorname:
                 return [int(float(assessname[2])),int(float(assessname[3]))]
         return None
     # 血压风险评估
@@ -577,23 +601,23 @@ class HealthRiskAssess(object):
         result = []
         if val and dbp and sbp and hr:
             if val[0]<dbp[0]:
-                result.append('收缩压较低')
+                result.append(_('Systolic blood pressure is low'))
             elif val[0]>dbp[1]:
-                result.append('收缩压较高')
+                result.append(_('Systolic blood pressure is high'))
             else:
-                result.append('收缩压正常')
+                result.append(_('Systolic blood pressure is normal'))
             if val[1]<sbp[0]:
-                result.append('低舒张较低')
+                result.append(_('Diastolic blood pressure is low'))
             elif val[1]>sbp[1]:
-                result.append('高舒张压')
+                result.append(_('Diastolic blood pressure is high'))
             else:
-                result.append('舒张压正常')
+                result.append(_('Diastolic blood pressure is normal'))
             if val[2]<hr[0]:
-                result.append('心动过缓')
+                result.append(_('bradycardia'))
             elif val[2]>hr[1]:
-                result.append('心动过速')
+                result.append(_('tachycardia'))
             else:
-                result.append('心率正常')
+                result.append(_('Heart rate is normal'))
             return result
         return None
 
@@ -601,7 +625,11 @@ class HealthRiskAssess(object):
     # 返回结果：总胆固醇正常范围列表[最大值,最小值]，如无评估标准数据返回None
     def gettc(self):
         for assessname in self.singlescale:
-            if assessname[1] == '总胆固醇':
+            if settings.LANGUAGE_CODE == 'en':
+                indicatorname ='Total cholesterol'
+            else:
+                indicatorname ='总胆固醇'
+            if assessname[1] == indicatorname:            
                 return [round(float(assessname[2]),2),round(float(assessname[3]),2)]
         return None
         
@@ -609,7 +637,11 @@ class HealthRiskAssess(object):
     # 返回结果：低密度脂蛋白正常范围列表[最大值,最小值]，如无评估标准数据返回None
     def getldl(self):
         for assessname in self.singlescale:
-            if assessname[1] == '低密度':
+            if settings.LANGUAGE_CODE == 'en':
+                indicatorname ='Low density'
+            else:
+                indicatorname ='低密度'
+            if assessname[1] == indicatorname:                  
                 return [round(float(assessname[2]),2),round(float(assessname[3]),2)]
         return None
         
@@ -617,7 +649,11 @@ class HealthRiskAssess(object):
     # 返回结果：高密度脂蛋白正常范围列表[最大值,最小值]，如无评估标准数据返回None
     def gethdl(self):
         for assessname in self.singlescale:
-            if assessname[1] == '高密度':
+            if settings.LANGUAGE_CODE == 'en':
+                indicatorname ='High density'
+            else:
+                indicatorname ='高密度'
+            if assessname[1] == indicatorname:             
                 return [round(float(assessname[2]),2),round(float(assessname[3]),2)]
         return None
         
@@ -625,7 +661,11 @@ class HealthRiskAssess(object):
     # 返回结果：甘油三酯正常范围列表[最大值,最小值]，如无评估标准数据返回None
     def gettg(self):
         for assessname in self.singlescale:
-            if assessname[1] == '甘油三酯':
+            if settings.LANGUAGE_CODE == 'en':
+                indicatorname ='Triglycerides'
+            else:
+                indicatorname ='甘油三酯'
+            if assessname[1] == indicatorname: 
                 return [round(float(assessname[2]),2),round(float(assessname[3]),2)]
         return None
         # 血压风险评估
@@ -639,29 +679,29 @@ class HealthRiskAssess(object):
         result = []
         if val and tc and ldl and hdl and tg:
             if val[0]<tc[0]:
-                result.append('总胆固醇较低')
+                result.append(_('Total cholesterol is low'))
             elif val[0]>tc[1]:
-                result.append('总胆固醇较高')
+                result.append(_('Total cholesterol is high'))
             else:
-                result.append('总胆固醇正常')
+                result.append(_('Total cholesterol is normal'))
             if val[1]<ldl[0]:
-                result.append('低密度脂蛋白较低')
+                result.append(_('Low density lipoprotein is low'))
             elif val[1]>ldl[1]:
-                result.append('低密度脂蛋白较高')
+                result.append(_('Low density lipoprotein is high'))
             else:
-                result.append('低密度脂蛋白正常')
+                result.append(_('Low density lipoprotein is normal'))
             if val[2]<hdl[0]:
-                result.append('高密度脂蛋白较低')
+                result.append(_('High density lipoprotein is low'))
             elif val[2]>hdl[1]:
-                result.append('高密度脂蛋白较高')
+                result.append(_('High density lipoprotein is high'))
             else:
-                result.append('高密度脂蛋白正常')
+                result.append(_('High density lipoprotein is normal'))
             if val[3]<tg[0]:
-                result.append('甘油三酯较低')
+                result.append(_('Triglycerides is low'))
             elif val[3]>tg[1]:
-                result.append('甘油三酯较高')
+                result.append(_('Triglycerides is high'))
             else:
-                result.append('甘油三酯正常')
+                result.append(_('Triglycerides is norma'))
             return result
         else:
             return None  

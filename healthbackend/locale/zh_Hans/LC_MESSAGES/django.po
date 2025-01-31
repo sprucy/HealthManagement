@@ -1,0 +1,819 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-31 13:06+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\api\views.py:129 .\healthmanage\views.py:288
+msgid ""
+"You don't have the habit of smoking or drinking alcohol on a daily basis, "
+"nor do you have a history of diabetes. Having good daily habits is the "
+"foundation of good health!"
+msgstr ""
+
+#: .\api\views.py:130 .\api\views.py:502 .\healthmanage\views.py:179
+#: .\healthmanage\views.py:289
+msgid ""
+"It is recommended to maintain good daily habits, control your diet, reduce "
+"salt, sugar, and oil, and at the same time strengthen physical exercise!"
+msgstr ""
+
+#: .\api\views.py:135 .\healthmanage\templates\healthmanage\habitassess.html:64
+#: .\healthmanage\views.py:292
+msgid "You have no habit of smoking"
+msgstr ""
+
+#: .\api\views.py:137 .\healthmanage\templates\healthmanage\habitassess.html:67
+#: .\healthmanage\views.py:294
+msgid "You have the habit of smoking"
+msgstr "你有抽烟的习惯"
+
+#: .\api\views.py:137 .\api\views.py:141 .\api\views.py:146
+#: .\healthmanage\views.py:294 .\healthmanage\views.py:298
+#: .\healthmanage\views.py:303
+msgid "you have"
+msgstr "你有"
+
+#: .\api\views.py:137 .\api\views.py:141 .\api\views.py:146
+#: .\healthmanage\views.py:294 .\healthmanage\views.py:298
+#: .\healthmanage\views.py:303
+msgid "years"
+msgstr "年"
+
+#: .\api\views.py:137 .\healthmanage\views.py:294
+msgid "smoking history"
+msgstr "吸烟史"
+
+#: .\api\views.py:139
+#: .\healthmanage\templates\healthmanage\habitassess.html:114
+#: .\healthmanage\views.py:296
+msgid "You have no habit of drinking alcohol"
+msgstr "你没有饮酒的习惯"
+
+#: .\api\views.py:141 .\healthmanage\views.py:298
+msgid "You have the habit of drinking"
+msgstr "你有饮酒的习惯"
+
+#: .\api\views.py:141 .\healthmanage\views.py:298
+msgid "drinking history"
+msgstr ""
+
+#: .\api\views.py:144 .\healthmanage\templates\healthmanage\habitassess.html:89
+#: .\healthmanage\views.py:301
+msgid "You have no history of diabetes"
+msgstr "饮酒史"
+
+#: .\api\views.py:146 .\healthmanage\templates\healthmanage\habitassess.html:92
+#: .\healthmanage\views.py:303
+msgid "You have diabetes"
+msgstr "你有糖尿病"
+
+#: .\api\views.py:146 .\healthmanage\views.py:303
+msgid "history of diabetes"
+msgstr "糖尿病史"
+
+#: .\api\views.py:217 .\healthmanage\views.py:234
+msgid "Your weight is very normal!"
+msgstr "你的体重很正常！"
+
+#: .\api\views.py:218 .\healthmanage\views.py:235
+msgid "It is recommended to maintain and strengthen physical exercise at the same time."
+msgstr "建议同时保持和加强体育锻炼。"
+
+#: .\api\views.py:222 .\api\views.py:298 .\api\views.py:299 .\api\views.py:303
+#: .\api\views.py:382 .\api\views.py:383 .\api\views.py:384
+#: .\healthmanage\views.py:239 .\healthmanage\views.py:344
+#: .\healthmanage\views.py:345 .\healthmanage\views.py:349
+#: .\healthmanage\views.py:401 .\healthmanage\views.py:402
+#: .\healthmanage\views.py:403
+msgid "Your"
+msgstr "你的"
+
+#: .\api\views.py:222 .\healthmanage\views.py:239
+msgid "BMI"
+msgstr ""
+
+#: .\api\views.py:223 .\healthmanage\views.py:240
+msgid "height"
+msgstr "体质指数"
+
+#: .\api\views.py:224 .\healthmanage\views.py:241
+msgid "weight"
+msgstr "体重"
+
+#: .\api\views.py:225 .\healthmanage\views.py:242
+msgid "belong to"
+msgstr "属于"
+
+#: .\api\views.py:226 .\healthmanage\views.py:243
+msgid "Normal weight for the same height"
+msgstr "同样身高的正常体重"
+
+#: .\api\views.py:228 .\healthmanage\views.py:245
+msgid "waistline"
+msgstr "腰围"
+
+#: .\api\views.py:229 .\healthmanage\views.py:246
+msgid "Normal waistline for the same height"
+msgstr "相同身高的正常腰围"
+
+#: .\api\views.py:283 .\api\views.py:480 .\healthmanage\risks.py:606
+#: .\healthmanage\views.py:157 .\healthmanage\views.py:329
+msgid "Systolic blood pressure is high"
+msgstr "收缩压较高"
+
+#: .\api\views.py:283 .\api\views.py:480 .\healthmanage\risks.py:612
+#: .\healthmanage\views.py:157 .\healthmanage\views.py:329
+msgid "Diastolic blood pressure is high"
+msgstr "舒张压较高"
+
+#: .\api\views.py:284 .\api\views.py:481 .\healthmanage\views.py:158
+#: .\healthmanage\views.py:330
+msgid "Hypertension"
+msgstr "高血压"
+
+#: .\api\views.py:287 .\api\views.py:484 .\healthmanage\risks.py:604
+#: .\healthmanage\views.py:161 .\healthmanage\views.py:333
+msgid "Systolic blood pressure is low"
+msgstr ""
+
+#: .\api\views.py:287 .\api\views.py:484 .\healthmanage\risks.py:610
+#: .\healthmanage\views.py:161 .\healthmanage\views.py:333
+msgid "Diastolic blood pressure is low"
+msgstr "舒张压较低"
+
+#: .\api\views.py:288 .\api\views.py:485 .\healthmanage\views.py:162
+#: .\healthmanage\views.py:334
+msgid "Hypotension"
+msgstr "低血压"
+
+#: .\api\views.py:292 .\healthmanage\views.py:338
+msgid "Congratulations, your blood pressure is normal, and having good daily habits is the foundation of good health!"
+msgstr "恭喜你，你的血压正常，拥有良好的日常习惯是身体健康的基础！"
+
+#: .\api\views.py:293 .\healthmanage\views.py:339
+msgid "It is recommended to maintain good daily habits, control diet, reduce salt, sugar and oil, and strengthen physical exercise."
+msgstr "建议保持良好的日常习惯，控制饮食，减少盐、糖和油，加强体育锻炼。"
+
+#: .\api\views.py:298 .\healthmanage\views.py:344
+msgid "Your recent average Systolic blood pressure"
+msgstr "你最近的平均收缩压"
+
+#: .\api\views.py:298 .\healthmanage\views.py:344
+msgid "Normal Systolic blood pressure range"
+msgstr "正常收缩压范围"
+
+#: .\api\views.py:299 .\healthmanage\views.py:345
+msgid "Your recent average Diastolic blood pressure"
+msgstr "你最近的平均舒张压"
+
+#: .\api\views.py:299 .\healthmanage\views.py:345
+msgid "Normal Diastolic blood pressure range"
+msgstr "正常舒张压范围"
+
+#: .\api\views.py:302 .\healthmanage\views.py:348
+msgid "If this blood pressure value is measured in a quiet state and the measurement method is correct, according to the World Health Organization, you can be diagnosed with"
+msgstr "如果在安静状态下测量此血压值，且测量方法正确，根据世卫组织，可诊断为患有"
+
+#: .\api\views.py:303 .\healthmanage\views.py:349
+msgid "Your recent average Heart rate"
+msgstr "你最近的平均心率"
+
+#: .\api\views.py:303 .\healthmanage\views.py:349
+msgid "Normal Heart rate range"
+msgstr "正常心率范围"
+
+#: .\api\views.py:356 .\api\views.py:492 .\healthmanage\risks.py:684
+#: .\healthmanage\views.py:169 .\healthmanage\views.py:375
+msgid "Total cholesterol is high"
+msgstr "总胆固醇较高"
+
+#: .\api\views.py:357 .\api\views.py:493 .\healthmanage\views.py:170
+#: .\healthmanage\views.py:376
+msgid "Hyperlipidemia"
+msgstr "高脂血症"
+
+#: .\api\views.py:360 .\api\views.py:496 .\healthmanage\risks.py:682
+#: .\healthmanage\views.py:173 .\healthmanage\views.py:379
+msgid "Total cholesterol is low"
+msgstr "总胆固醇较低"
+
+#: .\api\views.py:361 .\api\views.py:497 .\healthmanage\views.py:174
+#: .\healthmanage\views.py:380
+msgid "Hypolipidemia"
+msgstr ""
+
+#: .\api\views.py:366 .\healthmanage\risks.py:688 .\healthmanage\views.py:385
+msgid "Low density lipoprotein is low"
+msgstr "低血脂"
+
+#: .\api\views.py:367 .\api\views.py:369 .\api\views.py:371 .\api\views.py:373
+#: .\api\views.py:375 .\api\views.py:377 .\healthmanage\views.py:386
+#: .\healthmanage\views.py:388 .\healthmanage\views.py:390
+#: .\healthmanage\views.py:392 .\healthmanage\views.py:394
+#: .\healthmanage\views.py:396
+msgid "Your "
+msgstr "你的"
+
+#: .\api\views.py:367 .\healthmanage\views.py:386
+msgid "Pay attention to strengthening the intake of low-density lipoprotein."
+msgstr "注意加强低密度脂蛋白的摄入"
+
+#: .\api\views.py:368 .\healthmanage\risks.py:694 .\healthmanage\views.py:387
+msgid "High density lipoprotein is low"
+msgstr "高密度脂蛋白较低"
+
+#: .\api\views.py:369 .\healthmanage\views.py:388
+msgid "Pay attention to strengthening the intake of high-density lipoprotein."
+msgstr ""
+
+#: .\api\views.py:370 .\healthmanage\risks.py:700 .\healthmanage\views.py:389
+msgid "Triglycerides is low"
+msgstr "注意加强高密度脂蛋白的摄入。"
+
+#: .\api\views.py:371 .\healthmanage\views.py:390
+msgid "Pay attention to strengthening the intake of  triglycerides."
+msgstr "注意加强甘油三酯的摄入。"
+
+#: .\api\views.py:372 .\healthmanage\risks.py:690 .\healthmanage\views.py:391
+msgid "Low density lipoprotein is high"
+msgstr "低密度脂蛋白较高"
+
+#: .\api\views.py:373 .\healthmanage\views.py:392
+msgid "Pay attention to control the intake of low-density lipoprotein"
+msgstr "注意控制低密度脂蛋白的摄入"
+
+#: .\api\views.py:374 .\healthmanage\risks.py:696 .\healthmanage\views.py:393
+msgid "High density lipoprotein is high"
+msgstr "高密度脂蛋白较高"
+
+#: .\api\views.py:375 .\healthmanage\views.py:394
+msgid "Pay attention to control the intake of high-density lipoprotein"
+msgstr "注意控制高密度脂蛋白的摄入"
+
+#: .\api\views.py:376 .\healthmanage\risks.py:702 .\healthmanage\views.py:395
+msgid "Triglycerides is high"
+msgstr "甘油三酯较高"
+
+#: .\api\views.py:377 .\healthmanage\views.py:396
+msgid "Be careful to control your intake of triglycerides"
+msgstr "注意控制甘油三酯的摄入量"
+
+#: .\api\views.py:378 .\healthmanage\views.py:397
+msgid "Having good daily habits is the foundation of good health!"
+msgstr "拥有良好的日常习惯是身体健康的基础"
+
+#: .\api\views.py:380 .\healthmanage\views.py:399
+msgid "It is recommended to maintain good living habits, control diet, and strengthen physical exercise!"
+msgstr "建议保持良好的生活习惯，控制饮食，加强体育锻炼！"
+
+#: .\api\views.py:382 .\healthmanage\views.py:401
+msgid "Your recent average Low density lipoprotein"
+msgstr "你最近的平均低密度脂蛋白"
+
+#: .\api\views.py:382 .\healthmanage\views.py:401
+msgid "Normal LDL range"
+msgstr "正常 LDL 范围"
+
+#: .\api\views.py:383 .\healthmanage\views.py:402
+msgid "Your recent average High density lipoprotein"
+msgstr "你最近的平均高密度脂蛋白"
+
+#: .\api\views.py:383 .\healthmanage\views.py:402
+msgid "Normal HDL range"
+msgstr "正常 HDL 范围"
+
+#: .\api\views.py:384 .\healthmanage\views.py:403
+msgid "Your recent average Triglycerides"
+msgstr "你最近的平均甘油三酯"
+
+#: .\api\views.py:384 .\healthmanage\views.py:403
+msgid "Normal Triglycerides range"
+msgstr "正常甘油三酯范围"
+
+#: .\api\views.py:387 .\healthmanage\views.py:406
+msgid "If you have a physical examination as required, based on your total cholesterol, it can be diagnosed as"
+msgstr "如果你按要求做了体检，根据你的总胆固醇，可以诊断为"
+
+#: .\api\views.py:387 .\healthmanage\views.py:406
+msgid "It is recommended to seek medical review."
+msgstr "建议就医复查。"
+
+#: .\api\views.py:501 .\healthmanage\views.py:178
+msgid "You have good daily habits and physical condition, which is the foundation of good health!"
+msgstr "你有良好的日常习惯和身体状况，这是身体健康的基础！"
+
+#: .\api\views.py:504 .\healthmanage\views.py:182
+msgid "age"
+msgstr "年龄"
+
+#: .\api\views.py:504 .\healthmanage\views.py:182
+msgid "Your 10-year absolute risk of developing ischemic cardiovascular disease (ICVD) was assessed as"
+msgstr "您发生缺血性心血管疾病（ICVD）的 10 年绝对风险评估为"
+
+#: .\api\views.py:505 .\healthmanage\views.py:183
+msgid "The minimum absolute risk of ischemic cardiovascular disease (ICVD) in the same age and gender was"
+msgstr "相同年龄和性别的缺血性心血管疾病（ICVD）的最低绝对风险是"
+
+#: .\api\views.py:506 .\healthmanage\views.py:184
+msgid "The 10-year average absolute risk of ischemic cardiovascular disease (ICVD) in the same age and sex is"
+msgstr "同龄同性别缺血性心血管疾病（ICVD）的 10 年平均绝对风险为"
+
+#: .\api\views.py:508 .\healthmanage\views.py:186
+msgid "Your evaluation result is"
+msgstr "你的评估结果是"
+
+#: .\api\views.py:508 .\healthmanage\views.py:186
+msgid "times"
+msgstr "倍"
+
+#: .\api\views.py:508 .\healthmanage\views.py:186
+msgid "It is necessary to strengthen control to prevent the occurrence of ischemic cardiovascular disease (ICVD)."
+msgstr "有必要加强控制，预防缺血性心血管疾病（ICVD）的发生。"
+
+#: .\api\views.py:510 .\healthmanage\views.py:188
+msgid "Your risk of ischemic cardiovascular disease (ICVD) is lower."
+msgstr "您患缺血性心血管疾病（ICVD）的风险较低"
+
+#: .\healthmanage\risks.py:608
+msgid "Systolic blood pressure is normal"
+msgstr "收缩压正常"
+
+#: .\healthmanage\risks.py:614
+msgid "Diastolic blood pressure is normal"
+msgstr "舒张压正常"
+
+#: .\healthmanage\risks.py:616
+msgid "bradycardia"
+msgstr "心动过缓"
+
+#: .\healthmanage\risks.py:618
+msgid "tachycardia"
+msgstr "心动过速"
+
+#: .\healthmanage\risks.py:620
+msgid "Heart rate is normal"
+msgstr "心率正常"
+
+#: .\healthmanage\risks.py:686
+msgid "Total cholesterol is normal"
+msgstr "总胆固醇正常"
+
+#: .\healthmanage\risks.py:692
+msgid "Low density lipoprotein is normal"
+msgstr "低密度脂蛋白正常"
+
+#: .\healthmanage\risks.py:698
+msgid "High density lipoprotein is normal"
+msgstr "高密度脂蛋白正常"
+
+#: .\healthmanage\risks.py:704
+msgid "Triglycerides is normal"
+msgstr "甘油三酯正常"
+
+#: .\healthmanage\templates\base.html:130
+#: .\healthmanage\templates\base.html:146
+msgid "Super manager"
+msgstr "超级管理员"
+
+#: .\healthmanage\templates\base.html:135
+#: .\healthmanage\templates\base.html:151
+msgid "Normal"
+msgstr "正常"
+
+#: .\healthmanage\templates\base.html:138
+#: .\healthmanage\templates\base.html:154
+msgid "Register time"
+msgstr "注册时间"
+
+#: .\healthmanage\templates\base.html:161
+msgid "Change password"
+msgstr "修改密码"
+
+#: .\healthmanage\templates\base.html:166
+#: .\healthmanage\templates\base.html:168
+msgid "Log out"
+msgstr "注销"
+
+#: .\healthmanage\templates\base.html:199
+msgid "Online"
+msgstr "在线"
+
+#: .\healthmanage\templates\base.html:207
+msgid "Search"
+msgstr "朝朝"
+
+#: .\healthmanage\templates\base.html:219
+msgid "MAIN NAVIGATION"
+msgstr "主导航"
+
+#: .\healthmanage\templates\base.html:222
+msgid "Dashboard"
+msgstr "仪表盘"
+
+#: .\healthmanage\templates\base_site.html:4
+#: .\healthmanage\templates\healthmanage\login.html:14
+#: .\healthmanage\templates\healthmanage\register.html:13
+msgid "Django site admin"
+msgstr "Django 站点管理员"
+
+#: .\healthmanage\templates\healthmanage\analye.html:16
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:16
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:16
+#: .\healthmanage\templates\healthmanage\dashboard.html:16
+#: .\healthmanage\templates\healthmanage\diabetesanalye.html:10
+#: .\healthmanage\templates\healthmanage\diabetesanalye.html:16
+#: .\healthmanage\templates\healthmanage\drinkanalye.html:10
+#: .\healthmanage\templates\healthmanage\drinkanalye.html:16
+#: .\healthmanage\templates\healthmanage\fatanalye.html:10
+#: .\healthmanage\templates\healthmanage\fatanalye.html:16
+#: .\healthmanage\templates\healthmanage\habitassess.html:16
+#: .\healthmanage\templates\healthmanage\hyperlipemanalye.html:10
+#: .\healthmanage\templates\healthmanage\hyperlipemanalye.html:16
+#: .\healthmanage\templates\healthmanage\hypertensionanalye.html:10
+#: .\healthmanage\templates\healthmanage\hypertensionanalye.html:16
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:10
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:16
+#: .\healthmanage\templates\healthmanage\smokeanalye.html:10
+#: .\healthmanage\templates\healthmanage\smokeanalye.html:16
+#: .\healthmanage\templates\healthmanage\weightassess.html:10
+#: .\healthmanage\templates\healthmanage\weightassess.html:16
+#: .\healthmanage\templates\index.html:15
+msgid "Home"
+msgstr "主页"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:12
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:17
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:30
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:169
+msgid "Blood lipid Health Assessment"
+msgstr "血脂健康评估"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:42
+msgid "Blood lipid information"
+msgstr "血脂信息"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:60
+msgid "Mean TC"
+msgstr "平均 TC"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:62
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:85
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:108
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:131
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:167
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:62
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:85
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:108
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:144
+#: .\healthmanage\templates\healthmanage\habitassess.html:61
+#: .\healthmanage\templates\healthmanage\habitassess.html:86
+#: .\healthmanage\templates\healthmanage\habitassess.html:111
+#: .\healthmanage\templates\healthmanage\habitassess.html:150
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:110
+#: .\healthmanage\templates\healthmanage\weightassess.html:65
+#: .\healthmanage\templates\healthmanage\weightassess.html:88
+#: .\healthmanage\templates\healthmanage\weightassess.html:111
+#: .\healthmanage\templates\healthmanage\weightassess.html:150
+msgid "Insufficient information"
+msgstr "信息不足"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:63
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:86
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:109
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:132
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:167
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:63
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:86
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:109
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:144
+#: .\healthmanage\templates\healthmanage\habitassess.html:62
+#: .\healthmanage\templates\healthmanage\habitassess.html:87
+#: .\healthmanage\templates\healthmanage\habitassess.html:112
+#: .\healthmanage\templates\healthmanage\habitassess.html:150
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:110
+#: .\healthmanage\templates\healthmanage\weightassess.html:66
+#: .\healthmanage\templates\healthmanage\weightassess.html:89
+#: .\healthmanage\templates\healthmanage\weightassess.html:112
+#: .\healthmanage\templates\healthmanage\weightassess.html:150
+msgid "Unable to evaluate"
+msgstr "无法评估"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:66
+msgid "Normal TC"
+msgstr "正常TC"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:83
+msgid "Mean LDL"
+msgstr "平均LDL"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:89
+msgid "Normal LDL"
+msgstr "正常LDL"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:106
+msgid "Mean HDL"
+msgstr "平均HDL"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:112
+msgid "Normal HDL"
+msgstr "正常HDL"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:129
+msgid "Mean TG"
+msgstr "平均TG"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:135
+msgid "Normal TG"
+msgstr "正常TG"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:156
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:133
+#: .\healthmanage\templates\healthmanage\habitassess.html:139
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:99
+#: .\healthmanage\templates\healthmanage\weightassess.html:133
+msgid "Health management guidance and suggestions"
+msgstr "健康管理指导与建议"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:170
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:149
+#: .\healthmanage\templates\healthmanage\habitassess.html:154
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:114
+msgid "Health Risk Analysis"
+msgstr "健康风险分析"
+
+#: .\healthmanage\templates\healthmanage\bcholesterinassess.html:174
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:153
+#: .\healthmanage\templates\healthmanage\habitassess.html:158
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:118
+#: .\healthmanage\templates\healthmanage\weightassess.html:145
+msgid "Health guidance"
+msgstr "健康指导"
+
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:12
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:17
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:30
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:146
+msgid "Blood pressure health assessment"
+msgstr "血压健康评估"
+
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:42
+msgid "Blood pressure information"
+msgstr "血压信息"
+
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:60
+msgid "Mean DBP"
+msgstr "平均DBP"
+
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:66
+msgid "Normal DBP"
+msgstr "正常DBP"
+
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:83
+msgid "Mean SBP"
+msgstr "平均SBP"
+
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:89
+msgid "Normal SBP"
+msgstr "正常SBP"
+
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:106
+msgid "Mean BPM"
+msgstr "平均BPM"
+
+#: .\healthmanage\templates\healthmanage\bloodpressureassess.html:112
+msgid "Normal BPM"
+msgstr "正常BPM"
+
+#: .\healthmanage\templates\healthmanage\dashboard.html:12
+#: .\healthmanage\templates\healthmanage\dashboard.html:17
+#: .\healthmanage\templates\index.html:11
+#: .\healthmanage\templates\index.html:16
+msgid "dashboard"
+msgstr "仪表板"
+
+#: .\healthmanage\templates\healthmanage\dashboard.html:32
+msgid "Health management information"
+msgstr "健康管理信息"
+
+#: .\healthmanage\templates\healthmanage\dashboard.html:44
+msgid "Age"
+msgstr "年龄"
+
+#: .\healthmanage\templates\healthmanage\dashboard.html:58
+msgid "BMI analysis"
+msgstr "BMI分析"
+
+#: .\healthmanage\templates\healthmanage\dashboard.html:66
+msgid "Waistline"
+msgstr "腰围"
+
+#: .\healthmanage\templates\healthmanage\dashboard.html:76
+msgid "Blood pressure"
+msgstr "血压"
+
+#: .\healthmanage\templates\healthmanage\dashboard.html:98
+msgid "Blood lipid"
+msgstr "血脂"
+
+#: .\healthmanage\templates\healthmanage\diabetesanalye.html:12
+#: .\healthmanage\templates\healthmanage\diabetesanalye.html:17
+msgid "Diabetes population distribution analysis"
+msgstr "糖尿病人群分布分析"
+
+#: .\healthmanage\templates\healthmanage\diabetesanalye.html:30
+#: .\healthmanage\templates\healthmanage\drinkanalye.html:30
+#: .\healthmanage\templates\healthmanage\fatanalye.html:30
+#: .\healthmanage\templates\healthmanage\hyperlipemanalye.html:30
+#: .\healthmanage\templates\healthmanage\hypertensionanalye.html:30
+#: .\healthmanage\templates\healthmanage\smokeanalye.html:30
+msgid "No such population data, or the data are all 0 values, cannot be analyzed!"
+msgstr "没有无人口数据，或者数据为0值，无法分析！"
+
+#: .\healthmanage\templates\healthmanage\drinkanalye.html:12
+#: .\healthmanage\templates\healthmanage\drinkanalye.html:17
+msgid "Distribution analysis of drinking population"
+msgstr "饮酒人口分布分析"
+
+#: .\healthmanage\templates\healthmanage\fatanalye.html:12
+#: .\healthmanage\templates\healthmanage\fatanalye.html:17
+msgid "Distribution analysis of obese population"
+msgstr "肥胖人口分布分析"
+
+#: .\healthmanage\templates\healthmanage\habitassess.html:12
+#: .\healthmanage\templates\healthmanage\habitassess.html:17
+#: .\healthmanage\templates\healthmanage\habitassess.html:30
+msgid "Daily habit health assessment"
+msgstr ""
+
+#: .\healthmanage\templates\healthmanage\habitassess.html:42
+msgid "Daily habits Health information"
+msgstr "日常习惯健康评估"
+
+#: .\healthmanage\templates\healthmanage\habitassess.html:68
+msgid "smoking"
+msgstr "吸烟"
+
+#: .\healthmanage\templates\healthmanage\habitassess.html:68
+#: .\healthmanage\templates\healthmanage\habitassess.html:93
+#: .\healthmanage\templates\healthmanage\habitassess.html:118
+msgid "year"
+msgstr ""
+
+#: .\healthmanage\templates\healthmanage\habitassess.html:93
+msgid "Diabetes"
+msgstr "糖尿病"
+
+#: .\healthmanage\templates\healthmanage\habitassess.html:117
+msgid "You have the habit of drinking alcohol"
+msgstr "你有喝酒的习惯"
+
+#: .\healthmanage\templates\healthmanage\habitassess.html:118
+msgid "Drinking"
+msgstr "饮酒"
+
+#: .\healthmanage\templates\healthmanage\hyperlipemanalye.html:12
+#: .\healthmanage\templates\healthmanage\hyperlipemanalye.html:17
+msgid "Distribution analysis of hyperlipidemia population"
+msgstr "高脂血症人群分布分析"
+
+#: .\healthmanage\templates\healthmanage\hypertensionanalye.html:12
+#: .\healthmanage\templates\healthmanage\hypertensionanalye.html:17
+msgid "Distribution analysis of hypertension population"
+msgstr "高血压人群分布分析"
+
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:12
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:17
+msgid "Ischemic cardiovascular disease threat and risk assessment"
+msgstr "缺血性心血管疾病威胁和风险评估"
+
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:30
+msgid "Assessment of the 10-year absolute risk of ischemic cardiovascular disease (ICVD)"
+msgstr "缺血性心血管疾病(ICVD)10年绝对风险评估"
+
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:44
+msgid "Average absolute risk of onset in the same age group(ICVD)"
+msgstr "同龄ICVD十年发病平均绝对危险度"
+
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:61
+msgid "Your assessment of the ten-year absolute risk of developing the disease"
+msgstr "您评估的十年发病绝对危险度"
+
+#: .\healthmanage\templates\healthmanage\icvdrisk.html:78
+msgid "The lowest absolute risk of developing the disease in the same age group"
+msgstr "同龄十年最低发病绝对危险度"
+
+#: .\healthmanage\templates\healthmanage\login.html:16
+#: .\healthmanage\templates\healthmanage\register.html:15
+msgid "Log in"
+msgstr "登录"
+
+#: .\healthmanage\templates\healthmanage\smokeanalye.html:12
+#: .\healthmanage\templates\healthmanage\smokeanalye.html:17
+msgid "Distribution analysis of smoking population"
+msgstr "吸烟人口分布分析"
+
+#: .\healthmanage\templates\healthmanage\weightassess.html:12
+#: .\healthmanage\templates\healthmanage\weightassess.html:17
+#: .\healthmanage\templates\healthmanage\weightassess.html:30
+#: .\healthmanage\templates\healthmanage\weightassess.html:144
+msgid "Weight Health Assessment"
+msgstr "体重健康评估"
+
+#: .\healthmanage\templates\healthmanage\weightassess.html:42
+msgid "Height and weight information"
+msgstr "身高体重信息"
+
+#: .\healthmanage\templates\healthmanage\weightassess.html:60
+msgid "Mean Weight"
+msgstr "平均体重"
+
+#: .\healthmanage\templates\healthmanage\weightassess.html:63
+msgid "Normal Weight"
+msgstr "正常体重"
+
+#: .\healthmanage\templates\healthmanage\weightassess.html:83
+msgid "Mean BMI"
+msgstr "平均BMI"
+
+#: .\healthmanage\templates\healthmanage\weightassess.html:86
+msgid "Your BMI"
+msgstr "你的BMI"
+
+#: .\healthmanage\templates\healthmanage\weightassess.html:106
+msgid "Mean waistline"
+msgstr "平均腰围"
+
+#: .\healthmanage\templates\healthmanage\weightassess.html:109
+msgid "Normal waistline"
+msgstr "正常腰围"
+
+#: .\healthmanage\templates\index.html:41
+msgid "Add"
+msgstr "增加"
+
+#: .\healthmanage\templates\index.html:47
+msgid "View"
+msgstr "显示"
+
+#: .\healthmanage\templates\index.html:49
+msgid "Change"
+msgstr "修改"
+
+#: .\healthmanage\templates\index.html:71
+msgid "My Applications"
+msgstr "我的应用"
+
+#: .\healthmanage\templates\index.html:85
+msgid "My tables"
+msgstr "我的表"
+
+#: .\healthmanage\templates\index.html:127
+msgid "Recent actions"
+msgstr "最近操作"
+
+#: .\healthmanage\templates\index.html:128
+msgid "My actions"
+msgstr "我的操作"
+
+#: .\healthmanage\templates\index.html:132
+msgid "None available"
+msgstr "没有可用"
+
+#: .\healthmanage\templates\index.html:148
+msgid "Unknown content"
+msgstr "未知内容"
+
+#: .\healthmanage\templates\index.html:166
+msgid "You don't have permission to view or edit anything."
+msgstr "您没有查看或编辑任何内容的权限。"
+
+#: .\healthmanage\templates\pagination.html:15
+msgid "Show all"
+msgstr "显示全部"
+
+#: .\healthmanage\templates\pagination.html:18
+msgid "Save"
+msgstr "保存"
+
+#: .\healthmanage\templates\pagination.html:30
+msgid "Previous"
+msgstr "上一页"
+
+#: .\healthmanage\templates\pagination.html:39
+msgid "Next"
+msgstr "下一页"

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.utils.translation import gettext as _
 
 from rest_framework import viewsets
 from rest_framework import status
@@ -100,37 +102,49 @@ def habitassess_api(request):
 
 
     if userdata.getsmoke():
-        val = '吸烟'
+        if settings.LANGUAGE_CODE == 'en':
+            val='Smoking' 
+        else:
+            val='吸烟'
         risks.extend(myhealth.getrisks(val))
         intervents.extend(myhealth.getintervents(val))
 
     if userdata.getdrink():
-        val = '饮酒'
+        if settings.LANGUAGE_CODE == 'en':
+            val='Drinking'
+        else:
+            val='饮酒'
         risks.extend(myhealth.getrisks(val))
         intervents.extend(myhealth.getintervents(val))
 
     if userdata.getdiabetes():
-        val = '糖尿病'
+        if settings.LANGUAGE_CODE == 'en':        
+            val='Diabetes'
+        else:
+            val='糖尿病'
         risks.extend(myhealth.getrisks(val))
         intervents.extend(myhealth.getintervents(val))
 
     if not val:
-        risks = [['您日常没有吸烟和饮酒的习惯，也无糖尿病史，拥有良好的日常习惯是身体健康的基础！']]
-        intervents = [['建议保持良好的日常习惯，控制饮食，少盐少糖少油，同时加强体育锻炼!']]
+        risks =[[_("You don't have the habit of smoking or drinking alcohol on a daily basis, nor do you have a history of diabetes. Having good daily habits is the foundation of good health!")]]
+        intervents=[[_('It is recommended to maintain good daily habits, control your diet, reduce salt, sugar, and oil, and at the same time strengthen physical exercise!')]]
+
 
 
     if smokeyear == 0:
-        assess.append("您日常无吸烟的习惯;")
+        assess.append(_('You have no habit of smoking'))
     else:
-        assess.append(f"您有吸烟的习惯,已有{smokeyear}年的吸烟史;")
+        assess.append(_('You have the habit of smoking')+','+_('you have')+' '+str(smokeyear)+_('years')+' '+_("smoking history"))
     if drinkyear == 0:
-        assess.append("您日常无饮酒的习惯;")
+        assess.append(_('You have no habit of drinking alcohol'))
     else:
-        assess.append(f"您有饮酒的习惯，已有{drinkyear}年的饮酒史;")
+        assess.append(_('You have the habit of drinking')+','+_('you have')+' '+str(drinkyear)+_('years')+' '+_("drinking history"))
+
     if drinkyear == 0:
-        assess.append("您无糖尿病史;")
+        assess.append(_('You have no history of diabetes'))
     else:
-        assess.append(f"您患有糖尿病，已有{diabetesyear}年的糖尿病史;")
+        assess.append(_('You have diabetes')+','+_('you have')+' '+str(diabetesyear)+_('years')+' '+_("history of diabetes"))
+
 
 
     context = {
@@ -177,20 +191,43 @@ def bmiassess_api(request):
         risks=[]
         intervents=[]
         val=''
-        if (bmiresult == '体重偏瘦'):
-            val='体重消瘦'
+        val=''
+        if settings.LANGUAGE_CODE == 'en':
+            indicatorname = 'Under weight'
+            indicatorlist = ['Over weight','Grade I obesity','Grade II obesity','BMI evaluation','Grade III obesity']
+        else:
+            indicatorname = '体重偏瘦'
+            indicatorlist = ['体重偏胖','I度肥胖','II度肥胖','BMI评估','III度肥胖']
+
+        if (bmiresult == indicatorname):
+            if settings.LANGUAGE_CODE == 'en':
+                val='Underweight'
+            else:
+                val='体重消瘦'
             risks.extend(myhealth.getrisks(val))
             intervents.extend(myhealth.getintervents(val))
-        elif (bmiresult in ['体重偏胖','I度肥胖','II度肥胖','III度肥胖']):
-            val='体重肥胖'
+        elif (bmiresult in indicatorlist):
+            if settings.LANGUAGE_CODE == 'en':
+                val = 'Obesity'
+            else:
+                val='体重肥胖'
             risks.extend(myhealth.getrisks(val))
             intervents.extend(myhealth.getintervents(val))
         else:
-            risks.extend([['您的体重非常正常！'],])
-            intervents.extend([['建议保持，同时加强体育锻炼']])
+            risks.extend([[_('Your weight is very normal!')],])
+            intervents.extend([[_('It is recommended to maintain and strengthen physical exercise at the same time.')]])
+
         normalweight = myhealth.getnormalweight(assessresult[0])
         normalwaist = myhealth.getnormalwaist(sex, assessresult[0])
-        assess = f"您的体质指数{assessresult[3]},身高为{assessresult[0]}cm,体重为{assessresult[1]}kg,属于{assessresult[4]},相同身高的正常体重为{normalweight[0]}Kg-{normalweight[1]}Kg之间,腰围为{assessresult[2]}cm,相同身高的{'男性' if sex=='M' else '女性'}的正常腰围:{normalwaist[0]}cm-{normalwaist[1]}cm"
+        assess =(_('Your')+' '+_('BMI')+': '+str(assessresult[3])+','
+                +_('height')+': '+str(assessresult[0])+'cm,'
+                +_('weight')+': '+str(assessresult[1])+'kg,'
+                +_('belong to')+' '+str(assessresult[4])+','
+                +_('Normal weight for the same height')+':' 
+                + str(normalweight[0])+'Kg-'+str(normalweight[1])+'Kg,'
+                +_('waistline')+': '+str(assessresult[2])+'cm,'
+                +_('Normal waistline for the same height')+':'
+                +str(normalwaist[0])+'cm-'+str(normalwaist[1])+'cm.') 
 
     context = {
         'id': user.id,
@@ -243,25 +280,27 @@ def bloodpressureassess_api(request):
         risks=[]
         intervents=[]
         val=''
-        if bpresult[0] == '收缩压较高' or bpresult[1] == '舒张压较高':
-            val = '高血压' 
+        if bpresult[0] == _('Systolic blood pressure is high') or bpresult[1] == _('Diastolic blood pressure is high'):
+            val = _('Hypertension') 
             risks.extend(myhealth.getrisks(val))  
             intervents.extend(myhealth.getintervents(val))   
-        elif bpresult[0] == '收缩压较低' or bpresult[1] == '舒张压较低':
-            val = '低血压' 
+        elif bpresult[0] == _('Systolic blood pressure is low') or bpresult[1] == _('Diastolic blood pressure is low'):
+            val = _('Hypotension')  
             risks.extend(myhealth.getrisks(val))  
             intervents.extend(myhealth.getintervents(val)) 
         else:
-            risks.extend([['祝贺您，您的血压正常，拥有良好的日常习惯是身体健康的基础！']])
-            intervents.extend([['建议保持良好的日常习惯，控制饮食，少盐少糖少油，同时加强体育锻炼']])
+            risks.extend([[_('Congratulations, your blood pressure is normal, and having good daily habits is the foundation of good health!')]])
+            intervents.extend([[_('It is recommended to maintain good daily habits, control diet, reduce salt, sugar and oil, and strengthen physical exercise.')]])
 
         risks.extend(myhealth.getrisks(bpresult[2]))  
         intervents.extend(myhealth.getintervents(bpresult[2])) 
 
-        assess.append(f'您的近{avgnum}次平均收缩压为{assessresult[0]}mmol/L,正常收缩压范围为{normaldbp[0]}-{normaldbp[1]}mmol/L,您的{bpresult[0]};您的近{avgnum}次平均舒张压为{assessresult[1]}mmol/L,正常舒张压范围为{normalsbp[0]}-{normalsbp[1]}mmol/L,您的{bpresult[1]};')
+        assess.append(_('Your recent average Systolic blood pressure')+f': {assessresult[0]:.2f}mmol/L,'+_('Normal Systolic blood pressure range')+f': {normaldbp[0]:.2f}-{normaldbp[1]:.2f}mmol/L,'+_('Your')+f' {bpresult[0]};')
+        assess.append(_('Your recent average Diastolic blood pressure')+f': {assessresult[1]:.2f}mmol/L,'+_('Normal Diastolic blood pressure range')+f': {normalsbp[0]:.2f}-{normalsbp[1]:.2f}mmol/L,'+_('Your')+f' {bpresult[1]};')
+
         if val:
-            assess.append(f'此血压值如果在安静状态测量,且测量方法正确,根据世界卫生组织规定你可确诊为{val};') 
-        assess.append(f'您的近{avgnum}次平均心率为{assessresult[2]}次/分钟,正常心率范围为{normalhr[0]}-{normalhr[1]}次/分钟,您{bpresult[2]};')
+            assess.append(_('If this blood pressure value is measured in a quiet state and the measurement method is correct, according to the World Health Organization, you can be diagnosed with')+f' {val};') 
+        assess.append(_('Your recent average Heart rate')+f': {assessresult[2]:.2f}bpm,'+_('Normal Heart rate range')+f': {normalhr[0]:.2f}-{normalhr[1]:.2f}bpm,'+_('Your')+f' {bpresult[2]};')
 
 
     context = {
@@ -314,37 +353,38 @@ def bcholesterinassess_api(request):
         risks=[]
         intervents=[]
         val=''
-        if bpresult[0] == '总胆固醇较高':
-            val = '高脂血' 
+        if bpresult[0] == _('Total cholesterol is high'):
+            val = _('Hyperlipidemia')  
             risks.extend(myhealth.getrisks(val))  
             intervents.extend(myhealth.getintervents(val))   
-        elif bpresult[0] == '总胆固醇较低':
-            val = '低脂血' 
+        elif bpresult[0] == _('Total cholesterol is low'):
+            val = _('Hypolipidemia') 
             risks.extend(myhealth.getrisks(val))  
             intervents.extend(myhealth.getintervents(val))   
         else:
             riskstr=''
-            if bpresult[1] == '低密度脂蛋白较低':
-                riskstr += '您的'+bpresult[1]+'，注意加强低密度脂蛋白的摄入，'
-            if bpresult[2] == '高密度脂蛋白较低':
-                riskstr += '您的'+bpresult[2]+'，注意加强高密度脂蛋白的摄入，'
-            if bpresult[3] == '甘油三酯较低':
-                riskstr += '您的'+bpresult[3]+'，注意加强甘油三酯的摄入，'
-            if bpresult[1] == '低密度脂蛋白较高':
-                riskstr += '您的'+bpresult[1]+'，注意控制低密度脂蛋白的摄入，'
-            if bpresult[2] == '高密度脂蛋白较高':
-                riskstr += '您的'+bpresult[2]+'，注意控制高密度脂蛋白的摄入，'
-            if bpresult[3] == '甘油三酯较高':
-                riskstr += '您的'+bpresult[3]+'，注意控制甘油三酯的摄入，'
-            riskstr += '拥有良好的日常习惯是身体健康的基础！'
+            if bpresult[1] == _('Low density lipoprotein is low'):
+                riskstr += _('Your ')+bpresult[1]+','+_('Pay attention to strengthening the intake of low-density lipoprotein.')
+            if bpresult[2] == _('High density lipoprotein is low'):
+                riskstr += _('Your ')+bpresult[2]+','+_('Pay attention to strengthening the intake of high-density lipoprotein.')
+            if bpresult[3] == _('Triglycerides is low'):
+                riskstr += _('Your ')+bpresult[3]+','+_('Pay attention to strengthening the intake of  triglycerides.')
+            if bpresult[1] == _('Low density lipoprotein is high'):
+                riskstr += _('Your ')+bpresult[1]+','+_('Pay attention to control the intake of low-density lipoprotein')
+            if bpresult[2] == _('High density lipoprotein is high'):
+                riskstr += _('Your ')+bpresult[2]+','+_('Pay attention to control the intake of high-density lipoprotein')
+            if bpresult[3] == _('Triglycerides is high'):
+                riskstr += _('Your ')+bpresult[3]+','+_('Be careful to control your intake of triglycerides')
+            riskstr += _('Having good daily habits is the foundation of good health!')
             risks.extend([[riskstr]])    
-            intervents.extend([['建议保持良好的生活习惯，控制饮食，加强体育锻炼！']])
+            intervents.extend([[_('It is recommended to maintain good living habits, control diet, and strengthen physical exercise!')]])
 
-        assess.append(f'您的近{avgnum}次平均低密度脂蛋白为{assessresult[1]}mmol/L,正常低密度脂蛋白范围为{normalldl[0]}-{normalldl[1]}mmol/L,您的{bpresult[1]};')
-        assess.append(f'您的近{avgnum}次平均低密度脂蛋白为{assessresult[2]}mmol/L,正常高密度脂蛋白范围为{normalhdl[0]}-{normalhdl[1]}mmol/L,您的{bpresult[2]};')
-        assess.append(f'您的近{avgnum}次平均甘油三酯为{assessresult[3]}mmol/L,正常甘油三酯范围为{normaltg[0]}-{normaltg[1]}mmol/L,您的{bpresult[3]};')
+        assess.append(_('Your recent average Low density lipoprotein')+f': {assessresult[1]:.2f}mmol/L,'+_('Normal LDL range')+f': {normalldl[0]:.2f}-{normalldl[1]:.2f}mmol/L,'+_('Your')+f' {bpresult[1]};')
+        assess.append(_('Your recent average High density lipoprotein')+f': {assessresult[2]:.2f}mmol/L,'+_('Normal HDL range')+f': {normalhdl[0]:.2f}-{normalhdl[1]:.2f}mmol/L,'+_('Your')+f' {bpresult[2]};')
+        assess.append(_('Your recent average Triglycerides')+f': {assessresult[3]:.2f}mmol/L,'+_('Normal Triglycerides range')+f': {normaltg[0]:.2f}-{normaltg[1]:.2f}mmol/L,'+_('Your')+f' {bpresult[3]};')
+
         if val:
-            assess.append(f'如果您按要求进行体检，根据您体检的总胆固醇，可确诊为{val},建议就医复查;') 
+            assess.append(_('If you have a physical examination as required, based on your total cholesterol, it can be diagnosed as')+f' {val},'+_('It is recommended to seek medical review.')) 
 
     context = {
         'id': user.id,
@@ -388,15 +428,24 @@ def icvdassess_api(request):
     val=''
     assess=[]
     if userdata.getsmoke():
-        val='吸烟'
+        if settings.LANGUAGE_CODE == 'en':
+            val='Smoking' 
+        else:
+            val='吸烟'
         risks.extend(myhealth.getrisks(val))  
         intervents.extend(myhealth.getintervents(val))  
     if userdata.getdrink():
-        val='饮酒'
+        if settings.LANGUAGE_CODE == 'en':
+            val='Drinking'
+        else:
+            val='饮酒'
         risks.extend(myhealth.getrisks(val))  
         intervents.extend(myhealth.getintervents(val))   
     if userdata.getdiabetes():
-        val='糖尿病'
+        if settings.LANGUAGE_CODE == 'en':        
+            val='Diabetes'
+        else:
+            val='糖尿病'
         risks.extend(myhealth.getrisks(val))  
         intervents.extend(myhealth.getintervents(val))    
     #体重
@@ -404,50 +453,61 @@ def icvdassess_api(request):
     if assessresult:
         bmiresult = myhealth.bmiassess(bodyresult[3])
         assessresult.append(bmiresult)
-        if (bmiresult == '体重偏瘦'):
-            val='体重消瘦'
-            risks = myhealth.getrisks(val)
-            intervents = myhealth.getintervents(val)
-        elif (bmiresult in ['体重偏胖','I度肥胖','II度肥胖','III度肥胖']):
-            val='体重肥胖'
+        if settings.LANGUAGE_CODE == 'en':
+            indicatorname = 'Under weight'
+            indicatorlist = ['Over weight','Grade I obesity','Grade II obesity','BMI evaluation','Grade III obesity']
+        else:
+            indicatorname = '体重偏瘦'
+            indicatorlist = ['体重偏胖','I度肥胖','II度肥胖','BMI评估','III度肥胖']
+        if (bmiresult == indicatorname):
+            if settings.LANGUAGE_CODE == 'en':
+                val='Underweight'
+            else:
+                val='体重消瘦'
+            risks.extend(myhealth.getrisks(val))
+            intervents.extend(myhealth.getintervents(val))
+        elif (bmiresult in indicatorlist):
+            if settings.LANGUAGE_CODE == 'en':
+                val = 'Obesity'
+            else:
+                val='体重肥胖'
             risks.extend(myhealth.getrisks(val))
             intervents.extend(myhealth.getintervents(val))
     #血压
     bloodpressureresult = userdata.getbloodpressureavg(avgnum)
     if assessresult:
         bpresult = myhealth.bloodppressureassess(bloodpressureresult)
-        if bpresult[0] == '收缩压较高' or bpresult[1] == '舒张压较高':
-            val = '高血压' 
+        if bpresult[0] == _('Systolic blood pressure is high') or bpresult[1] == _('Diastolic blood pressure is high'):
+            val = _('Hypertension') 
             risks.extend(myhealth.getrisks(val))  
             intervents.extend(myhealth.getintervents(val))   
-        elif bpresult[0] == '收缩压较低' or bpresult[1] == '舒张压较低':
-            val = '低血压' 
+        elif bpresult[0] == _('Systolic blood pressure is low') or bpresult[1] == _('Diastolic blood pressure is low'):
+            val = _('Hypotension') 
             risks.extend(myhealth.getrisks(val))  
             intervents.extend(myhealth.getintervents(val)) 
     #血脂
     bcholesterinresult = userdata.getbcholesterinavg(avgnum)
     if assessresult:
         bpresult = myhealth.bcholesterinassess(bcholesterinresult)
-        if bpresult[0] == '总胆固醇较高':
-            val = '高脂血' 
+        if bpresult[0] == _('Total cholesterol is high'):
+            val = _('Hyperlipidemia')
             risks.extend(myhealth.getrisks(val))  
             intervents.extend(myhealth.getintervents(val))   
-        elif bpresult[0] == '总胆固醇较低':
-            val = '低脂血' 
+        elif bpresult[0] == _('Total cholesterol is low'):
+            val = _('Hypolipidemia') 
             risks.extend(myhealth.getrisks(val))  
             intervents.extend(myhealth.getintervents(val))   
     if not val:
-        risks =[['您拥有良好的日常习惯和身体条件，这是是身体健康的基础！']]
-        intervents=[['建议保持良好的日常习惯，控制饮食，少盐少糖少油，同时加强体育锻炼!']]      
+        risks =[[_('You have good daily habits and physical condition, which is the foundation of good health!')]]
+        intervents=[[_('It is recommended to maintain good daily habits, control your diet, reduce salt, sugar, and oil, and at the same time strengthen physical exercise!')]]
     if assessresult:  
-        assess.append(f'您的年龄为{age}岁，经评估您缺血性心血管病(ICVD)十年发病绝对危险度为{assessresult[0]},'
-                    +f'而经统计同龄同性别缺血性心血管病(ICVD)十年发病最小绝对危险度为{assessresult[2]},'
-                    +f'您的评估结果是其{(assessresult[0]/assessresult[2]):.2f}倍;同龄同性别缺血性心血管病(ICVD)'
-                    +f'十年发病平均绝对危险度为{assessresult[1]},')
+        assess.append(_('age')+': '+str(age)+','+_('Your 10-year absolute risk of developing ischemic cardiovascular disease (ICVD) was assessed as')+' '+str(assessresult[0])+','
+                    +_('The minimum absolute risk of ischemic cardiovascular disease (ICVD) in the same age and gender was')+' '+str(assessresult[2])+','
+                    +_('The 10-year average absolute risk of ischemic cardiovascular disease (ICVD) in the same age and sex is')+' '+str(assessresult[1])+',')
         if assessresult[0] > assessresult[1]:
-            assess.append(f'您的评估结果是其{assessresult[0]/assessresult[1]:.2f}倍;需要加强控制,防止缺血性心血管病(ICVD)的发生。')
+            assess.append(_('Your evaluation result is')+' '+f'{assessresult[0]/assessresult[1]:.2f}'+_('times')+','+_('It is necessary to strengthen control to prevent the occurrence of ischemic cardiovascular disease (ICVD).'))
         else: 
-            assess.append(f'你缺血性心血管病(ICVD)的发生风险较低。')
+            assess.append(_('Your risk of ischemic cardiovascular disease (ICVD) is lower.'))
 
 
     context = {

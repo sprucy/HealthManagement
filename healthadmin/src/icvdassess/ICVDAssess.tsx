@@ -37,65 +37,53 @@ const ICVDAssess = () => {
     if (!icvds || icvds.length === 0) {
         return <p>No daily icvd data available.</p>;
     }
-    if (icvd.username==='admin'){
-        return(
-            <div>
-                <div style={styles.singleCol}>
+
+    return (
+        <div>
+            <div style={styles.flexColumn as CSSProperties}>
+                <div>
                     <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                        <Typography variant="h5" >{translate('health.systemuserwarning')}</Typography>
+                        <Typography variant="h5" >{translate('resources.icvdassess.name')}</Typography>
                     </Box>
-
                 </div>
-        </div>            
-        )
-    }
-    else{
-        return (
-            <div>
-                <div style={styles.flexColumn as CSSProperties}>
-                    <div>
-                        <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                            <Typography variant="h5" >{translate('resources.icvdassess.name')}</Typography>
-                        </Box>
-                    </div>
 
-                    <div style={styles.flex}>
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('health.icvdassess.currisk')}
-                            subtitle={`${icvd.assessresult[0]}`}
-                        />
-                        <Spacer />
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('health.icvdassess.minrisk')}
-                            subtitle={`${icvd.assessresult[2]}`}
-                        />
-                        <Spacer />
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('health.icvdassess.avgrisk')}
-                            subtitle={`${icvd.assessresult[1]}`}
-                        />
-                    </div>
-                    <VerticalSpacer />
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.icvdassess.fields.assess')} content={icvd.assess} />
-                    </div>
+                <div style={styles.flex}>
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('health.icvdassess.currisk')}
+                        subtitle={`${icvd.assessresult[0]}`}
+                    />
+                    <Spacer />
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('health.icvdassess.minrisk')}
+                        subtitle={`${icvd.assessresult[2]}`}
+                    />
+                    <Spacer />
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('health.icvdassess.avgrisk')}
+                        subtitle={`${icvd.assessresult[1]}`}
+                    />
+                </div>
+                <VerticalSpacer />
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.icvdassess.fields.assess')} content={icvd.assess} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.icvdassess.fields.risks')} content={icvd.risks} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.icvdassess.fields.risks')} content={icvd.risks} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.icvdassess.fields.intervents')} content={icvd.intervents} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.icvdassess.fields.intervents')} content={icvd.intervents} />
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
+
 };
 export default ICVDAssess;

@@ -9,12 +9,12 @@
 
 {% block bodyclass %}{{ block.super }}Home{% endblock %}
 
-{% block content_title %} 血脂健康评估 {% endblock %}
+{% block content_title %} {% trans 'Blood lipid Health Assessment' %} {% endblock %}
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
     <li><a href="{% url 'healthmanage:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
-    <li class="active">血脂健康评估</li>
+    <li class="active">{% trans 'Blood lipid Health Assessment' %}</li>
 </ol>
 {% endblock %}
 
@@ -27,7 +27,7 @@
       <div class="info-box bg-red">
         <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
         <div class="info-box-content" style="text-align:center">
-            <h2>血脂健康评估</h2>
+            <h2>{% trans 'Blood lipid Health Assessment' %}</h2>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -39,7 +39,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="box box-success">
         <div class="box-header with-border">
-          <h3 class="box-title">血脂信息</h3>
+          <h3 class="box-title">{% trans 'Blood lipid information' %}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -57,13 +57,13 @@
       <!-- small box -->
       <div class="small-box bg-red">
         <div class="inner" >
-          <h5>最近{{avgnum}}次平均总胆固醇(mmol/L)</h5>
+          <h5>{% trans 'Mean TC' %}(mmol/L)</h5>
           {% if assessresult is None %}   
-            <h4>信息不足</h4>
-            <h4>无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% else %}
             <h3>{{assessresult.0}}</h3>
-            <h5>正常总胆固醇:{{normaltc.0}} - {{normaltc.1}}</h5>
+            <h5>{% trans 'Normal TC' %}:{{normaltc.0}} - {{normaltc.1}}</h5>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -80,13 +80,13 @@
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner">
-          <h5>最近{{avgnum}}次平均低密度(mmol/L)</h5>
+          <h5>{% trans 'Mean LDL' %}(mmol/L)</h5>
           {% if assessresult is None %}   
-            <h4>信息不足</h4>
-            <h4>无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% else %}
             <h3>{{assessresult.1}}</h3>
-            <h5>正常低密度:{{normalldl.0}} - {{normalldl.1}}</h5>
+            <h5>{% trans 'Normal LDL' %}:{{normalldl.0}} - {{normalldl.1}}</h5>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -103,13 +103,13 @@
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h5>最近{{avgnum}}次平均高密度(mmol/L)</h5>
+          <h5>{% trans 'Mean HDL' %}(mmol/L)</h5>
           {% if assessresult is None %}   
-            <h4>信息不足</h4>
-            <h4>无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% else %}
             <h3>{{assessresult.2}}</h3>
-            <h5>正常高密度:{{normalhdl.0}} - {{normalhdl.1}}</h5>
+            <h5>{% trans 'Normal HDL' %}:{{normalhdl.0}} - {{normalhdl.1}}</h5>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -126,13 +126,13 @@
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h5>最近{{avgnum}}次平均甘油三酯(mmol/L)</h5>
+          <h5>{% trans 'Mean TG' %}(mmol/L)</h5>
           {% if assessresult is None %}   
-            <h4>信息不足</h4>
-            <h4>无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% else %}
             <h3>{{assessresult.3}}</h3>
-            <h5>正常甘油三酯:{{normaltg.0}} - {{normaltg.1}}</h5>
+            <h5>{% trans 'Normal TG' %}:{{normaltg.0}} - {{normaltg.1}}</h5>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -153,7 +153,7 @@
       <div class="box box-success">
         <div class="box-header">
           <i class="fa fa-bar-chart-o"></i>
-          <h3 class="box-title">健康管理指导建议</h3>
+          <h3 class="box-title">{% trans 'Health management guidance and suggestions' %}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -164,21 +164,14 @@
         <!-- /.box-header -->
         <div class="box-body" > 
         {% if assessresult is None%} 
-          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信息不足,无法评估!</h4> 
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'Insufficient information' %},{% trans 'Unable to evaluate' %}</h4> 
         {% else %} 
-          <h4 style="color:#0066ff"><strong>血脂健康评估：</strong></h4>            
-          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          您的近{{avgnum}}次平均总胆固醇为<strong>{{assessresult.0}}mmol/L</strong>，正常总胆固醇范围为{{normaltc.0}} - {{normaltc.1}}mmol/L，您的{{bpresult.0}}；
-          您的近{{avgnum}}次平均低密度脂蛋白为<strong>{{assessresult.1}}mmol/L</strong>，正常低密度脂蛋白范围为{{normalldl.0}} - {{normalldl.1}}mmol/L，您的{{bpresult.1}}；
-          您的近{{avgnum}}次平均低密度脂蛋白为<strong>{{assessresult.2}}mmol/L</strong>，正常高密度脂蛋白范围为{{normalhdl.0}} - {{normalhdl.1}}mmol/L，您的{{bpresult.2}}；
-          您的近{{avgnum}}次平均甘油三酯为<strong>{{assessresult.3}}mmol/L</strong>，正常甘油三酯范围为{{normaltg.0}} - {{normaltg.1}}mmol/L，您的{{bpresult.3}}；
-          {% if val %}如果您按要求进行体检，根据您体检的总胆固醇，可确诊为<strong>{{val}}</strong>，建议就医复查;{% endif %} 
-          </h4>
-          <h4 style="color:#0066ff"><strong>健康风险分析：</strong></h4>  
+          <h4 style="color:#0066ff"><strong>{% trans 'Blood lipid Health Assessment' %}：</strong></h4>            
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{assess.0}}</h4>          <h4 style="color:#0066ff"><strong>{% trans 'Health Risk Analysis' %}：</strong></h4>  
           {% for risk in risks %}
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ risk.0 }}</h4>  
           {% endfor %}
-          <h4 style="color:#0066ff"><strong>健康指导建议：</strong></h4>  
+          <h4 style="color:#0066ff"><strong>{% trans 'Health guidance' %}：</strong></h4>  
           {% for intervent in intervents %}
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ intervent.0 }}</h4>  
           {% endfor %}
@@ -208,7 +201,7 @@ $(function () {
 // 设置图表的配置项和数据
   let option = {
     title: {
-        text: '血脂',
+        text: 'Bcholesterin',
         show:false
     },
     dataset:{
@@ -273,28 +266,28 @@ $(function () {
     xAxis: {type: 'category',boundaryGap: false,},
     yAxis: {},
     series: [
-        { name:'总胆固醇',
+        { name:'TC',
           type: 'line', 
           seriesLayoutBy: 'row',
           areaStyle: {
             color:'#60acfc',opacity:0.5   
           }
         },
-        { name:'低密度',
+        { name:'LDL',
           type: 'line', 
           seriesLayoutBy: 'row',
           areaStyle: {
             color:'#feb64d',opacity:0.5  
           }
         },
-        { name:'高密度',
+        { name:'HDL',
           type: 'line', 
           seriesLayoutBy: 'row',
           areaStyle: {
             color:'#5bc49f',opacity:0.5  
           }
         },
-        { name:'甘油三酯',
+        { name:'TG',
           type: 'line', 
           seriesLayoutBy: 'row',
           areaStyle: {

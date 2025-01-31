@@ -57,7 +57,7 @@ class UserInfoAdmin(admin.ModelAdmin):
 class BodyInfoAdmin(admin.ModelAdmin):
     def get_name(self,obj):
         return obj.user.last_name+obj.user.first_name
-    get_name.short_description = u'姓名'
+    get_name.short_description = u'Name'
     exclude =('id','user',)
     ex = lambda x:[f.name for f in BodyInfo._meta.fields if f.name not in x]
     list_display = ex(exclude) 
@@ -80,7 +80,7 @@ class BodyInfoAdmin(admin.ModelAdmin):
 class SmokeDiabetesInfoAdmin(admin.ModelAdmin):
     def get_name(self,obj):
         return obj.user.last_name+obj.user.first_name
-    get_name.short_description = u'姓名'
+    get_name.short_description = u'Name'
     exclude =('id','user',)
     ex = lambda x:[f.name for f in SmokeDiabetesInfo._meta.fields if f.name not in x]
     list_display = ex(exclude) 
@@ -114,7 +114,7 @@ class SmokeDiabetesInfoAdmin(admin.ModelAdmin):
 class BloodPressureAdmin(admin.ModelAdmin):
     def get_name(self,obj):
         return obj.user.last_name+obj.user.first_name
-    get_name.short_description = u'姓名'
+    get_name.short_description = u'Name'
     exclude =('id','user',)
     ex = lambda x:[f.name for f in BloodPressure._meta.fields if f.name not in x]
     list_display = ex(exclude) 
@@ -136,7 +136,7 @@ class BloodPressureAdmin(admin.ModelAdmin):
 class BcholesterinAdmin(admin.ModelAdmin):
     def get_name(self,obj):
         return obj.user.last_name+obj.user.first_name
-    get_name.short_description = u'姓名'
+    get_name.short_description = u'Name'
     exclude =('id','user',)
     ex = lambda x:[f.name for f in Bcholesterin._meta.fields if f.name not in x]
     list_display = ex(exclude)

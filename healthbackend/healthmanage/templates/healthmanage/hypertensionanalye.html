@@ -7,14 +7,14 @@
 
 {% block coltype %}colMS{% endblock %}
 
-{% block bodyclass %}{{ block.super }}Home{% endblock %}
+{% block bodyclass %}{{ block.super }}{% trans 'Home' %}{% endblock %}
 
-{% block content_title %} 高血压人群分布分析 {% endblock %}
+{% block content_title %} {% trans 'Distribution analysis of hypertension population' %} {% endblock %}
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
   <li><a href="{% url 'healthmanage:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
-  <li class="active">高血压人群分布分析</li>
+  <li class="active">{% trans 'Distribution analysis of hypertension population' %}</li>
 </ol>
 {% endblock %}
 
@@ -27,7 +27,7 @@
       <div class="box box-success">
         <div class="box-body">
           {% if dataset is None %}   
-            <h3>无该类人群数据，或数据均为0值，无法分析！</h3>
+            <h3>{% trans 'No such population data, or the data are all 0 values, cannot be analyzed!' %}</h3>
           {% endif %}
           <div id="mapBox" style="width: 100%;height: 580px;"></div>
         </div>
@@ -52,7 +52,7 @@
     let mapBoxOption = {
       backgroundColor: '#FFFFFF',
       title: {
-        text: '高血压人群分布图',
+        text: 'Distribution map of hypertension population',
       //  subtext: '',
         x: 'center',
         y: '7%',
@@ -62,10 +62,10 @@
         //formatter: '{b}: {c}人',
         formatter: function(data){
             if( !isNaN(data.value) ){
-              return data.name+"："+data.value+'人';
+              return data.name+":"+data.value;
             }
             else{
-              return data.name+'：0人或该地区无数据';
+              return data.name+':0 people or no data for the region';
             }
         },
       },
@@ -85,7 +85,7 @@
         max: {% widthratio valmax 1 2 %},
         left: 'left',
         top: 'bottom',
-        text: ['高', '低'],
+        text: ['high', 'low'],
         inRange: {
           color: ['lightskyblue', 'yellow', 'orangered']
           //color: ['#e0ffff', '#006edd']
@@ -120,7 +120,7 @@
       },
       series: [
         {
-          name: '用户数',
+          name: 'users',
           type: 'map',
           geoIndex: 0,
           data: {{ dataset|safe }},

@@ -50,79 +50,67 @@ const BcholesterinAssess = () => {
         }
         return [];
     };
-    if (bsassess.username==='admin'){
-        return(
-            <div>
+   
+    return (
+        <div>
+            <div style={styles.flexColumn as CSSProperties}>
                 <div style={styles.singleCol}>
                     <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                        <Typography variant="h5" >{translate('health.systemuserwarning')}</Typography>
+                        <Typography variant="h5" >{translate('resources.bcholesterinassess.name')}</Typography>
                     </Box>
-
                 </div>
-        </div>            
-        )
-    }
-    else{    
-        return (
-            <div>
-                <div style={styles.flexColumn as CSSProperties}>
-                    <div style={styles.singleCol}>
-                        <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                            <Typography variant="h5" >{translate('resources.bcholesterinassess.name')}</Typography>
-                        </Box>
-                    </div>
-                    <div style={styles.flex}>
-                        <HealthAreaChart 
-                            title = {translate('health.bcholesterinassess.charttitle')}
-                            height = '300'
-                            dataset={datalist}
-                        /> 
-                    </div>
-                    <div style={styles.flex}>
-                        <CardWithIcon
-                            to="/bodyinfos"
-                            icon={DollarIcon}
-                            title={translate('health.bcholesterinassess.avgtc')}
-                            subtitle={`${bsassess.assessresult[0]}mmol/L`}>
-                        </CardWithIcon>
-                        <Spacer />
-                        <CardWithIcon
-                            to="/bodyinfos"
-                            icon={DollarIcon}
-                            title={translate('health.bcholesterinassess.avgldl')}
-                            subtitle={`${bsassess.assessresult[1]}mmol/L`} >
+                <div style={styles.flex}>
+                    <HealthAreaChart 
+                        title = {translate('health.bcholesterinassess.charttitle')}
+                        height = '300'
+                        dataset={datalist}
+                    /> 
+                </div>
+                <div style={styles.flex}>
+                    <CardWithIcon
+                        to="/bodyinfos"
+                        icon={DollarIcon}
+                        title={translate('health.bcholesterinassess.avgtc')}
+                        subtitle={`${bsassess.assessresult[0]}mmol/L`}>
+                    </CardWithIcon>
+                    <Spacer />
+                    <CardWithIcon
+                        to="/bodyinfos"
+                        icon={DollarIcon}
+                        title={translate('health.bcholesterinassess.avgldl')}
+                        subtitle={`${bsassess.assessresult[1]}mmol/L`} >
 
-                        </CardWithIcon>
-                        <Spacer />
-                        <CardWithIcon
-                            to="/bodyinfos"
-                            icon={DollarIcon}
-                            title={translate('health.bcholesterinassess.avghdl')}
-                            subtitle={`${bsassess.assessresult[2]}mmol/L`} >
-                        </CardWithIcon>
-                        <Spacer />
-                        <CardWithIcon
-                            to="/bodyinfos"
-                            icon={DollarIcon}
-                            title={translate('health.bcholesterinassess.avgtg')}
-                            subtitle={`${bsassess.assessresult[3]}mmol/L`} >
-                        </CardWithIcon>                
-                    </div>
-                    <VerticalSpacer />
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bcholesterinassess.fields.assess')} content={bsassess.assess} />
-                    </div>
+                    </CardWithIcon>
+                    <Spacer />
+                    <CardWithIcon
+                        to="/bodyinfos"
+                        icon={DollarIcon}
+                        title={translate('health.bcholesterinassess.avghdl')}
+                        subtitle={`${bsassess.assessresult[2]}mmol/L`} >
+                    </CardWithIcon>
+                    <Spacer />
+                    <CardWithIcon
+                        to="/bodyinfos"
+                        icon={DollarIcon}
+                        title={translate('health.bcholesterinassess.avgtg')}
+                        subtitle={`${bsassess.assessresult[3]}mmol/L`} >
+                    </CardWithIcon>                
+                </div>
+                <VerticalSpacer />
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bcholesterinassess.fields.assess')} content={bsassess.assess} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bcholesterinassess.fields.risks')} content={bsassess.risks} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bcholesterinassess.fields.risks')} content={bsassess.risks} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.bcholesterinassess.fields.intervents')} content={bsassess.intervents} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.bcholesterinassess.fields.intervents')} content={bsassess.intervents} />
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
+
 };
 export default BcholesterinAssess;

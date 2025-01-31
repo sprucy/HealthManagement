@@ -29,7 +29,7 @@
                 <div class="box-header">
                   <i class="fa fa-bar-chart-o"></i>
 
-                  <h3 class="box-title">健康管理建议</h3>
+                  <h3 class="box-title">{% trans 'Health management information' %}</h3>
 
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -41,7 +41,7 @@
                 <!-- /.box-header -->
                 <div class="box-body" >
                   
-                  <div id="smokediabetesChart" style="width: 100%;height:200px;">年龄：{{age}}岁</div>
+                  <div id="smokediabetesChart" style="width: 100%;height:200px;">{% trans 'Age' %}: {{age}}</div>
                   
                 <!-- /.box-body -->
                 </div>
@@ -55,7 +55,7 @@
             <!-- BAR CHART -->
           <div class="box box-success">
             <div class="box-header with-border">
-              <h3 class="box-title">体重指数分析：</h3>
+              <h3 class="box-title">{% trans 'BMI analysis' %}:</h3>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -63,7 +63,7 @@
               </div>
             </div>
             <div class="box-body" >
-              <div id="bodyChart" style="width: 100%;height:200px;">腰围</div>
+              <div id="bodyChart" style="width: 100%;height:200px;">{% trans 'Waistline' %}</div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -73,7 +73,7 @@
           <!-- DONUT CHART -->
           <div class="box box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">血压(mmHg)：</h3>
+              <h3 class="box-title">{% trans 'Blood pressure' %}(mmHg):</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -95,7 +95,7 @@
           <!-- DONUT CHART -->
           <div class="box box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">血脂(mmol/L)：</h3>
+              <h3 class="box-title">{% trans 'Blood lipid' %}(mmol/L):</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

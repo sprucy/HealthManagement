@@ -41,15 +41,14 @@ import Dashboard from "./dashboard/Dashboard";
 const i18nProvider = polyglotI18nProvider(
   locale => {
       if (locale === 'en') {
-          return import('./i18n/en').then(messages => messages.default);
-      }
-
-      // Always fallback on english
-      //return englishMessages;
-      // Always fallback on chinese
-      return customChineseMessages;
-  },
-  'zh', // Default locale
+          return englishMessages;
+      }else if (locale === 'zh') {
+        return customChineseMessages;
+    }
+    // Always fallback on english
+    return englishMessages; // 直接返回英语消息对象
+},
+  'en', // Default locale
   [
       { locale: 'en', name: 'English' },
       { locale: 'zh', name: '中文' },

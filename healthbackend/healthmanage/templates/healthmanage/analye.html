@@ -55,11 +55,11 @@
     // 指定图表的配置项和数据
     let pieoption = {
       title: [{
-            left: '8%',
+            left: '7%',
             top: '38%',
-            text: 'Smoke',
+            text: 'Smoking',
         },{
-            left: '28%',
+            left: '27%',
             top: '38%',
             text: 'Drinking',
             show: true,
@@ -69,14 +69,14 @@
             text: 'Diabetes',
             show: true,
         },{
-            left: '67%',
+            left: '68.5%',
             top: '38%',
             text: 'HTN',
             show: true,
         },{
-            left: '87%',
+            left: '88.5%',
             top: '38%',
-            text: 'HLD',
+            text: 'HLP',
             show: true,
         },{
             text: '',
@@ -87,8 +87,8 @@
       legend: {show: false},
       dataset: {
         sourceHeader:false,
-        dimensions:['性别', '吸烟', '饮酒', '糖尿病', '高血压','高血脂'],
-        source: [['男',0,0,0,0,0],['女',0,0,0,0,0]]
+        dimensions:['Sex', 'Smoking', 'Drinking', 'Diabetes', 'hypertension','hyperlipidemia'],
+        source: [['M',0,0,0,0,0],['F',0,0,0,0,0]]
     },
     grid: [
         {left: '0%'},
@@ -122,7 +122,7 @@
             radius: ['45%','65%'],          
             center: ['10%', '48%'],
             label:{
-              formatter: "{b}{@[1]}人"
+              formatter: "{b}{@[1]}"
             }        
           },
           { type: 'pie', 
@@ -136,7 +136,7 @@
             radius: ['45%','65%'],          
             center: ['30%', '48%'],
             label:{
-              formatter: "{b}{@[2]}人"
+              formatter: "{b}{@[2]}"
             }            },
           {type: 'pie', 
             seriesLayoutBy: 'column',
@@ -149,7 +149,7 @@
             radius: ['45%','65%'],          
             center: ['50%', '48%'],
             label:{
-              formatter: "{b}{@[3]}人"
+              formatter: "{b}{@[3]}"
             }  
           },
           {type: 'pie', 
@@ -163,7 +163,7 @@
             radius: ['45%','65%'],          
             center: ['70%', '48%'],
             label:{
-              formatter: "{b}{@[4]}人"
+              formatter: "{b}{@[4]}"
             }  
           },
           {type: 'pie', 
@@ -177,7 +177,7 @@
             radius: ['45%','65%'],          
             center: ['90%', '48%'],
             label:{
-              formatter: "{b}{@[5]}人"
+              formatter: "{b}{@[5]}"
             }         
           },          
         ]
@@ -187,14 +187,14 @@
     let mapBoxOption = {
       backgroundColor: '#FFFFFF',
       title: {
-        text: '健康管理用户人群分布图',
+        text: 'Health management user population distribution map',
       //  subtext: '',
         x: 'center',
         y: 'bottom',
       },
       tooltip: {
         trigger: 'item',
-        formatter: '{b}: {c}人'
+        formatter: '{b}: {c}'
       },
       toolbox: {
         show: true,
@@ -212,7 +212,7 @@
         max: {{ valmax }},
         left: 'left',
         top: 'bottom',
-        text: ['高', '低'],
+        text: ['High', 'Low'],
         inRange: {
           color: ['lightskyblue', 'yellow', 'orangered']
           //color: ['#e0ffff', '#006edd']
@@ -247,7 +247,7 @@
       },
       series: [
         {
-          name: '用户数',
+          name: 'Users',
           type: 'map',
           geoIndex: 0,
           data: {% autoescape off %}{{ dataset }}{% endautoescape %},

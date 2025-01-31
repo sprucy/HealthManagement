@@ -122,138 +122,126 @@ const Dashboard = () => {
         }
         return [];
     };
-    if (bmiweight.username==='admin'){
-        return(
-            <div>
-                <div style={styles.singleCol}>
-                    <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                        <Typography variant="h5" >{translate('health.systemuserwarning')}</Typography>
-                    </Box>
-
-                </div>
-        </div>            
-        )
-    }
-    else{ 
-        return (
-            <div>
-                <div style={styles.flexColumn as CSSProperties}>
-                    <div style={styles.singleCol}>
-                        <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em' }} bgcolor="info.main" color="white">
-                            <Typography variant="h5">{translate('health.dashboard.title')}</Typography>
-                        </Box>
-                    </div>
-                    <div style={styles.flex}>
-                        <div style={styles.cardContainer}>
-                            <CardWithIcon
-                                to="/smokediabetesinfos"
-                                icon={DollarIcon}
-                                title={translate('resources.habitassess.fields.smokeyear')}
-                                subtitle={`${Habit.smokeyear}`}
-                            />
-                        </div>
-                        <Spacer />
-                        <div style={styles.cardContainer}>
-                            <CardWithIcon
-                                to="/smokediabetesinfos"
-                                icon={DollarIcon}
-                                title={translate('resources.habitassess.fields.drinkyear')}
-                                subtitle={`${Habit.drinkyear}`}
-                            />
-                        </div>
-                        <Spacer />
-                        <div style={styles.cardContainer}>
-                            <CardWithIcon
-                                to="/smokediabetesinfos"
-                                icon={DollarIcon}
-                                title={translate('resources.habitassess.fields.diabetesyear')}
-                                subtitle={`${Habit.diabetesyear}`}
-                            />
-                        </div>
-                    </div>
-                    <VerticalSpacer />
-                    <div style={styles.flex}>
-                        <div style={styles.chartContainer}>
-                            <HealthAreaChart
-                                title={translate('health.bloodpressureassess.charttitle')}
-                                height='300'
-                                dataset={bpdatalist}
-                            />
-                        </div>
-                        <div style={styles.chartContainer}>
-                            <HealthAreaChart
-                                title={translate('health.bcholesterinassess.charttitle')}
-                                height='300'
-                                dataset={bsdatalist}
-                            />
-                        </div>
-                    </div>   
-                    <div style={styles.flex}>
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('health.icvdassess.currisk')}
-                            subtitle={`${icvd.assessresult[0]}`}
-                        />
-                        <Spacer />
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('health.icvdassess.minrisk')}
-                            subtitle={`${icvd.assessresult[2]}`}
-                        />
-                        <Spacer />
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('health.icvdassess.avgrisk')}
-                            subtitle={`${icvd.assessresult[1]}`}
-                        />
-                    </div> 
-                    <VerticalSpacer />                                            
-                    <div style={styles.flex}>
-                        <div style={styles.chartContainer}>
-                            <HealthLineChart
-                                title={translate('health.bmiassess.heightchart')}
-                                height='300'
-                                xdata={getDataset(0)}
-                                ydata={getDataset(1)}
-                            />
-                        </div>
-                        <Spacer />
-                        <div style={styles.chartContainer}>
-                            <HealthLineChart
-                                title={translate('health.bmiassess.weightchart')}
-                                height='300'
-                                xdata={getDataset(0)}
-                                ydata={getDataset(2)}
-                            />
-                        </div>
-                        <Spacer />
-                        <div style={styles.chartContainer}>
-                            <HealthLineChart
-                                title={translate('health.bmiassess.waistchart')}
-                                height='300'
-                                xdata={getDataset(0)}
-                                ydata={getDataset(3)}
-                            />
-                        </div>
-                        <Spacer />
-                        <div style={styles.chartContainer}>
-                            <HealthLineChart
-                                title={translate('health.bmiassess.bmichart')}
-                                height='300'
-                                xdata={getDataset(0)}
-                                ydata={getDataset(4)}
-                            />
-                        </div>
-                    </div>
-
-                    <VerticalSpacer />                
     
+    return (
+        <div>
+            <div style={styles.flexColumn as CSSProperties}>
+                <div style={styles.singleCol}>
+                    <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em' }} bgcolor="info.main" color="white">
+                        <Typography variant="h5">{translate('health.dashboard.title')}</Typography>
+                    </Box>
                 </div>
+                <div style={styles.flex}>
+                    <div style={styles.cardContainer}>
+                        <CardWithIcon
+                            to="/smokediabetesinfos"
+                            icon={DollarIcon}
+                            title={translate('resources.habitassess.fields.smokeyear')}
+                            subtitle={`${Habit.smokeyear}`}
+                        />
+                    </div>
+                    <Spacer />
+                    <div style={styles.cardContainer}>
+                        <CardWithIcon
+                            to="/smokediabetesinfos"
+                            icon={DollarIcon}
+                            title={translate('resources.habitassess.fields.drinkyear')}
+                            subtitle={`${Habit.drinkyear}`}
+                        />
+                    </div>
+                    <Spacer />
+                    <div style={styles.cardContainer}>
+                        <CardWithIcon
+                            to="/smokediabetesinfos"
+                            icon={DollarIcon}
+                            title={translate('resources.habitassess.fields.diabetesyear')}
+                            subtitle={`${Habit.diabetesyear}`}
+                        />
+                    </div>
+                </div>
+                <VerticalSpacer />
+                <div style={styles.flex}>
+                    <div style={styles.chartContainer}>
+                        <HealthAreaChart
+                            title={translate('health.bloodpressureassess.charttitle')}
+                            height='300'
+                            dataset={bpdatalist}
+                        />
+                    </div>
+                    <div style={styles.chartContainer}>
+                        <HealthAreaChart
+                            title={translate('health.bcholesterinassess.charttitle')}
+                            height='300'
+                            dataset={bsdatalist}
+                        />
+                    </div>
+                </div>   
+                <div style={styles.flex}>
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('health.icvdassess.currisk')}
+                        subtitle={`${icvd.assessresult[0]}`}
+                    />
+                    <Spacer />
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('health.icvdassess.minrisk')}
+                        subtitle={`${icvd.assessresult[2]}`}
+                    />
+                    <Spacer />
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('health.icvdassess.avgrisk')}
+                        subtitle={`${icvd.assessresult[1]}`}
+                    />
+                </div> 
+                <VerticalSpacer />                                            
+                <div style={styles.flex}>
+                    <div style={styles.chartContainer}>
+                        <HealthLineChart
+                            title={translate('health.bmiassess.heightchart')}
+                            height='300'
+                            xdata={getDataset(0)}
+                            ydata={getDataset(1)}
+                        />
+                    </div>
+                    <Spacer />
+                    <div style={styles.chartContainer}>
+                        <HealthLineChart
+                            title={translate('health.bmiassess.weightchart')}
+                            height='300'
+                            xdata={getDataset(0)}
+                            ydata={getDataset(2)}
+                        />
+                    </div>
+                    <Spacer />
+                    <div style={styles.chartContainer}>
+                        <HealthLineChart
+                            title={translate('health.bmiassess.waistchart')}
+                            height='300'
+                            xdata={getDataset(0)}
+                            ydata={getDataset(3)}
+                        />
+                    </div>
+                    <Spacer />
+                    <div style={styles.chartContainer}>
+                        <HealthLineChart
+                            title={translate('health.bmiassess.bmichart')}
+                            height='300'
+                            xdata={getDataset(0)}
+                            ydata={getDataset(4)}
+                        />
+                    </div>
+                </div>
+
+                <VerticalSpacer />                
+
             </div>
-        );
-    };
+        </div>
+    );
+
 };
 export default Dashboard;

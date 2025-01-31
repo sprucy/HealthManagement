@@ -7,14 +7,14 @@
 
 {% block coltype %}colMS{% endblock %}
 
-{% block bodyclass %}{{ block.super }}Home{% endblock %}
+{% block bodyclass %}{{ block.super }}{% trans 'Home' %}{% endblock %}
 
-{% block content_title %} 缺血性心血管病发病风险评估 {% endblock %}
+{% block content_title %} {% trans 'Ischemic cardiovascular disease threat and risk assessment' %} {% endblock %}
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
     <li><a href="{% url 'healthmanage:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
-    <li class="active">缺血性心血管病发病风险评估</li>
+    <li class="active">{% trans 'Ischemic cardiovascular disease threat and risk assessment' %}</li>
 </ol>
 {% endblock %}
 
@@ -27,7 +27,7 @@
       <div class="info-box bg-red">
         <span class="info-box-icon"><i class="fa fa-heartbeat"></i></span>
         <div class="info-box-content" style="text-align:center">
-          <h2>缺血性心血管病(ICVD)10年发病绝对危险度评估</h2>
+          <h2>{% trans 'Assessment of the 10-year absolute risk of ischemic cardiovascular disease (ICVD)' %}</h2>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -41,7 +41,7 @@
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner" >
-          <h4>同龄十年发病平均绝对危险度</h4>
+          <h4>{% trans 'Average absolute risk of onset in the same age group(ICVD)' %}</h4>
           <h3>{{assessresult.1}}%</h3>
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -58,7 +58,7 @@
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h4>您评估的十年发病绝对危险度</h4>
+          <h4>{% trans 'Your assessment of the ten-year absolute risk of developing the disease' %}</h4>
           <h3>{{assessresult.0}}%</h3>
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -75,7 +75,7 @@
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h4>同龄十年最低发病绝对危险度</h4>
+          <h4>{% trans 'The lowest absolute risk of developing the disease in the same age group' %}</h4>
           <h3>{{assessresult.2}}%</h3>
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -96,7 +96,7 @@
       <div class="box box-success">
         <div class="box-header">
           <i class="fa fa-bar-chart-o"></i>
-          <h3 class="box-title">健康管理指导建议</h3>
+          <h3 class="box-title">{% trans 'Health management guidance and suggestions' %}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -107,24 +107,15 @@
         <!-- /.box-header -->
         <div class="box-body" >                            
         {% if assessresult is None%} 
-          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信息不足,无法评估!</h4> 
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'Insufficient information' %},{% trans 'Unable to evaluate' %}</h4> 
         {% else %} 
-          <h4 style="color:#0066ff"><strong>ICVD健康评估：</strong></h4>  
-          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          您的年龄为{{age}}岁，经评估您缺血性心血管病(ICVD)十年发病绝对危险度为<strong>{{assessresult.0}}%</strong>，
-          而经统计同龄同性别缺血性心血管病(ICVD)十年发病最小绝对危险度为<strong>{{assessresult.2}}%</strong>，您的评估结果是其<strong>{% widthratio assessresult.0 assessresult.2 1 %}</strong>倍；
-          同龄同性别缺血性心血管病(ICVD)十年发病平均绝对危险度为<strong>{{assessresult.1}}</strong>，
-          {% if assessresult0 > assessresult.1 %}
-          您的评估结果是其<strong>{% widthratio assessresult.0 assessresult.1 1 %}</strong>倍；需要加强控制，防止缺血性心血管病(ICVD)的发生。
-          {% else %} 
-          你缺血性心血管病(ICVD)的发生风险较低。
-          {% endif %}  
-          </h4>
-          <h4 style="color:#0066ff"><strong>健康风险分析：</strong></h4>  
+          <h4 style="color:#0066ff"><strong>ICVD健康评估:</strong></h4>  
+          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{assess.0}}</h4>          </h4>
+          <h4 style="color:#0066ff"><strong>{% trans 'Health Risk Analysis' %}:</strong></h4>  
           {% for risk in risks %}
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ risk.0 }}</h4>  
           {% endfor %}
-          <h4 style="color:#0066ff"><strong>健康指导建议：</strong></h4>  
+          <h4 style="color:#0066ff"><strong>{% trans 'Health guidance' %}:</strong></h4>  
           {% for intervent in intervents %}
             <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ intervent.0 }}</h4>  
           {% endfor %}

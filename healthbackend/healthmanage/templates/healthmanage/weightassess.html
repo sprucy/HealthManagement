@@ -7,14 +7,14 @@
 
 {% block coltype %}colMS{% endblock %}
 
-{% block bodyclass %}{{ block.super }}Home{% endblock %}
+{% block bodyclass %}{{ block.super }}{% trans 'Home' %}{% endblock %}
 
-{% block content_title %} 体重健康评估 {% endblock %}
+{% block content_title %} {% trans 'Weight Health Assessment' %} {% endblock %}
 
 {% block breadcrumbs %}
 <ol class="breadcrumb">
     <li><a href="{% url 'healthmanage:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
-    <li class="active">体重健康评估</li>
+    <li class="active">{% trans 'Weight Health Assessment' %}</li>
 </ol>
 {% endblock %}
 
@@ -27,7 +27,7 @@
       <div class="info-box bg-red">
         <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
         <div class="info-box-content" style="text-align:center">
-            <h2>体重健康评估</h2>
+            <h2>{% trans 'Weight Health Assessment' %}</h2>
         </div>
         <!-- /.info-box-content -->
       </div>
@@ -39,7 +39,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="box box-success">
         <div class="box-header with-border">
-          <h3 class="box-title">身高体重信息</h3>
+          <h3 class="box-title">{% trans 'Height and weight information' %}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -57,12 +57,13 @@
       <!-- small box -->
       <div class="small-box bg-aqua">
         <div class="inner" >
-          <h4>最近{{avgnum}}次平均体重</h4>
+          <h4>{% trans 'Mean Weight' %}</h4>
           {% if bddataset %}
           <h3>{{assessresult.1}}Kg</h3>
-          <h4>正常体重:{{normalweight.0}}Kg - {{normalweight.1}}Kg</h4>
+          <h4>{% trans 'Normal Weight' %}:{{normalweight.0}}Kg - {{normalweight.1}}Kg</h4>
           {% else %}
-          <h4>信息不足无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -79,12 +80,13 @@
       <!-- small box -->
       <div class="small-box bg-yellow">
         <div class="inner">
-          <h4>最近{{avgnum}}次平均体质指数(BMI)</h4>
+          <h4>{% trans 'Mean BMI' %}</h4>
           {% if bddataset %}
           <h3>{{assessresult.3}}</h3>
-          <h4>您的体质指数属于{{assessresult.4}}</h4>
+          <h4>{% trans 'Your BMI' %}: {{assessresult.4}}</h4>
           {% else %}
-            <h4>信息不足无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -101,12 +103,13 @@
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h4>最近{{avgnum}}次平均腰围</h4>
+          <h4>{% trans 'Mean waistline' %}</h4>
           {% if bddataset %}
-          <h3>{{assessresult.2}}cm</h3>
-          <h4>正常腰围:{{normalwaist.0}}cm - {{normalwaist.1}}cm</h4>
+            <h3>{{assessresult.2}}cm</h3>
+            <h4>{% trans 'Normal waistline' %}:{{normalwaist.0}}cm - {{normalwaist.1}}cm</h4>
           {% else %}
-          <h4>信息不足无法评估</h4>
+            <h4>{% trans 'Insufficient information' %}</h4>
+            <h4>{% trans 'Unable to evaluate' %}</h4>
           {% endif %}
         </div>
         <div class="progress" style="width: 95%;height:5px;margin:0 auto">
@@ -127,7 +130,7 @@
       <div class="box box-success">
         <div class="box-header">
           <i class="fa fa-bar-chart-o"></i>
-          <h3 class="box-title">健康管理指导建议</h3>
+          <h3 class="box-title">{% trans 'Health management guidance and suggestions' %}</h3>
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -138,22 +141,13 @@
         <!-- /.box-header -->
         <div class="box-body" > 
         {% if bddataset %}
-        <h4 style="color:#0066ff"><strong>体重健康评估：</strong></h4>                            
-        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您的体质指数<strong>{{assessresult.3}}</strong>，
-        身高为<strong>{{assessresult.0}}cm</strong>，体重为<strong>{{assessresult.1}}kg</strong>，属于<strong>{{assessresult.4}}</strong>，
-        相同身高的正常体重为<strong>{{normalweight.0}}Kg - {{normalweight.1}}Kg</strong>之间，腰围为<strong>{{assessresult.2}}cm</strong>，相同身高的
-        {% if sex == "M" %}男性{% else %}女性{% endif %}
-        的正常腰围：<strong>{{normalwaist.0}}cm - {{normalwaist.1}}cm</strong>。</h4>
-        <h4 style="color:#0066ff"><strong>健康风险分析：</strong></h4>  
-        {% for risk in risks %}
-          <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ risk.0 }}</h4>  
-        {% endfor %}
-        <h4 style="color:#0066ff"><strong>健康指导建议：</strong></h4>  
+        <h4 style="color:#0066ff"><strong>{% trans 'Weight Health Assessment' %}：</strong></h4>                            
+        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{assess.0}}</h4>        <h4 style="color:#0066ff"><strong>{% trans 'Health guidance' %}：</strong></h4>  
         {% for intervent in intervents %}
           <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ intervent.0 }}</h4>  
         {% endfor %}
         {% else %}
-        <h2>信息不足无法评估</h2>
+        <h2>{% trans 'Insufficient information' %},{% trans 'Unable to evaluate' %}</h2>
         {% endif %}        
         </div>  
         <!-- /.box-body -->
@@ -179,10 +173,10 @@ $(function () {
 // 指定图表的配置项和数据
   let option = {
     title: [
-        {text: '体质指数(BMI)',left:'8%',top:-4},
-        {text: '体重',left:'36%',top:-4},
-        {text: '身高',left:'61%',top:-4},
-        {text: '腰围',left:'86%',top:-4}
+        {text: 'BMI',left:'8%',top:-4},
+        {text: 'WEIGHT',left:'36%',top:-4},
+        {text: 'HEIGHT',left:'61%',top:-4},
+        {text: 'WAISTLINE',left:'86%',top:-4}
       ],
     dataset:{
       source:{{ bddataset | safe }}
@@ -226,9 +220,9 @@ $(function () {
     ],
     series: [
         {name:'BMI',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 0,yAxisIndex: 0, encode: {x: 0,y: 4,}},
-        {name:'体重',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 1,yAxisIndex: 1, encode: {x: 0,y: 2,}},
-        {name:'身高',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 2,yAxisIndex: 2, encode: {x: 0,y: 1,}},
-        {name:'腰围',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 3,yAxisIndex: 3, encode: {x: 0,y: 3,}}
+        {name:'Weight',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 1,yAxisIndex: 1, encode: {x: 0,y: 2,}},
+        {name:'Height',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 2,yAxisIndex: 2, encode: {x: 0,y: 1,}},
+        {name:'Waistline',type: 'line', seriesLayoutBy: 'row', xAxisIndex: 3,yAxisIndex: 3, encode: {x: 0,y: 3,}}
     ]
   };
 

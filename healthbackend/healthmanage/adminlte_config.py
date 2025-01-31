@@ -11,7 +11,7 @@ class HealthAdminlteConfig(AdminlteConfig):
     # 用户名显示，默认为None，将渲染为request.user.username
     #username_field = request.user.username
     # 站点logo，默认为None，将渲染为adminlteui/static/admin/dist/img/default-log.svg
-    site_logo = settings.MEDIA_URL + '/health-logo.png'
+    #site_logo = settings.MEDIA_URL + '/health-logo.png'
     # 站点主题，默认为None，将渲染为blue
     #skin = 'red'
     # 侧边栏布局，默认为fixed，可选：['boxed', 'fixed']
@@ -23,9 +23,9 @@ class HealthAdminlteConfig(AdminlteConfig):
     #copyright = 'Copyright © 2021-2022 <a href="URL_ADDRESS    #copyright = 'Copyright © 2021-2022 <a href="https://github.com/huanglianghua/django-adminlte-ui">django-ad
     #copyright = 'Copyright © 2021-2022 <a href="URL_ADDRESS.com/huanglianghua/django-adminlte-ui">django-adminlte-ui</a>'
     # 欢迎标志（登录页），默认为None，将渲染为芝麻开门
-    welcome_sign = 'Welcome for Health Manager!'
+    welcome_sign = 'Welcome for Health Manage!'
 
-    group = Group.objects.get(name='健康管理')
+    group = Group.objects.get(name='Health Management')
     grouppermissions=[perm.content_type.app_label+'.'+perm.codename for perm in group.permissions.all()]
     main_menu = [
             MenuItem(label='healthmanage', name='Health Info', child=[

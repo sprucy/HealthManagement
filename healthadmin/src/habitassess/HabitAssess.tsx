@@ -37,66 +37,53 @@ const HabitAssess = () => {
     if (!habits || habits.length === 0) {
         return <p>No daily habit data available.</p>;
     }
-    if (habit.username==='admin'){
-        return(
-            <div>
-                <div style={styles.singleCol}>
+
+    return (
+        <div>
+            <div style={styles.flexColumn as CSSProperties}>
+                <div>
                     <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                        <Typography variant="h5" >{translate('health.systemuserwarning')}</Typography>
+                        <Typography variant="h5" >{translate('resources.habitassess.name')}</Typography>
                     </Box>
-
                 </div>
-        </div>            
-        )
-    }
-    else{
-        return (
-            <div>
-                <div style={styles.flexColumn as CSSProperties}>
-                    <div>
-                        <Box height="3em" style={{ ...styles.singleCol, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '1em', marginBottom: '1em'}} bgcolor="info.main" color="white">
-                            <Typography variant="h5" >{translate('resources.habitassess.name')}</Typography>
-                        </Box>
-                    </div>
 
-                    <div style={styles.flex}>
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('resources.habitassess.fields.smokeyear')}
-                            subtitle={`${habit.smokeyear}`}
-                        />
-                        <Spacer />
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('resources.habitassess.fields.drinkyear')}
-                            subtitle={`${habit.drinkyear}`}
-                        />
-                        <Spacer />
-                        <CardWithIcon
-                            to="/smokediabetesinfos"
-                            icon={DollarIcon}
-                            title={translate('resources.habitassess.fields.diabetesyear')}
-                            subtitle={`${habit.diabetesyear}`}
-                        />
-                    </div>
-                    <VerticalSpacer />
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.habitassess.fields.assess')} content={habit.assess} />
-                    </div>
+                <div style={styles.flex}>
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('resources.habitassess.fields.smokeyear')}
+                        subtitle={`${habit.smokeyear}`}
+                    />
+                    <Spacer />
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('resources.habitassess.fields.drinkyear')}
+                        subtitle={`${habit.drinkyear}`}
+                    />
+                    <Spacer />
+                    <CardWithIcon
+                        to="/smokediabetesinfos"
+                        icon={DollarIcon}
+                        title={translate('resources.habitassess.fields.diabetesyear')}
+                        subtitle={`${habit.diabetesyear}`}
+                    />
+                </div>
+                <VerticalSpacer />
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.habitassess.fields.assess')} content={habit.assess} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.habitassess.fields.risks')} content={habit.risks} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.habitassess.fields.risks')} content={habit.risks} />
+                </div>
 
-                    <div style={styles.singleCol}>
-                        <CardWithTitle title={translate('resources.habitassess.fields.intervents')} content={habit.intervents} />
-                    </div>
+                <div style={styles.singleCol}>
+                    <CardWithTitle title={translate('resources.habitassess.fields.intervents')} content={habit.intervents} />
                 </div>
             </div>
-        );
-    };
+        </div>
+    );
 };
 
 export default HabitAssess;
