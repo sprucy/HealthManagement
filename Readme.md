@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # HealthMangement
 
 ## Project Structure
